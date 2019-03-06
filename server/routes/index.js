@@ -4,5 +4,6 @@ module.exports = app => {
       message: "api get test"
     })
   );
+
   require("./users")(app);
 };

@@ -4,7 +4,9 @@
   "description": "This project is a capstone project for qut foundry",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon ./bin/www",
+    "server:dev": "nodemon ./bin/www",
+    "client": "cd client && umi dev",
+    "dev": "concurrently --kill-others-on-fail \"yarn server:dev \" \"yarn client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/brayansong/2018-Capstone-QUT-Foundry#readme",
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "morgan": "^1.9.1",

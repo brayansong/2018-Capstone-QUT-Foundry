@@ -26,10 +26,29 @@ Install node modules
 yarn
 ```
 
+Install Concurrently
+
+```
+npm install -g concurrently
+```
+
+Install sequelize-cli for server
+
+```
+npm install -g sequelize-cli
+```
+
+Install umi for client
+
+```
+cd client
+npm install -g umi
+```
+
 run dev server in local host
 
 ```
-yarn dev
+yarn start:ev
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
