@@ -11,8 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Node
-yarn
+npm
 Postgresql
 ```
 
@@ -23,7 +22,7 @@ A step by step series of examples that tell you how to get a development env run
 Install node modules
 
 ```
-yarn
+npm install
 ```
 
 Install Concurrently
@@ -45,10 +44,11 @@ cd client
 npm install -g umi
 ```
 
-run dev server in local host
+run dev client in local host
 
 ```
-yarn start:ev
+Go to root file of this project
+npm run client
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
