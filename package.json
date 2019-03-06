@@ -1,0 +1,32 @@
+{
+  "name": "2018-Capstone-QUT-Foundry",
+  "version": "1.0.0",
+  "description": "This project is a capstone project for qut foundry",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brayansong/2018-Capstone-QUT-Foundry.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brayansong/2018-Capstone-QUT-Foundry/issues"
+  },
+  "homepage": "https://github.com/brayansong/2018-Capstone-QUT-Foundry#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "pg": "^7.8.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.43.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
