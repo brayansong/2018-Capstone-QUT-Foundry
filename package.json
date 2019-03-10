@@ -6,7 +6,6 @@
   "scripts": {
     "server:dev": "nodemon ./bin/www",
     "client": "cd client && umi dev",
-    "start": "node ./bin/www",
     "dev": "concurrently --kill-others-on-fail \"yarn server:dev \" \"yarn client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
