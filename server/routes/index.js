@@ -6,4 +6,5 @@ module.exports = app => {
   );
 
   require("./users")(app);
+  require("./authentications")(app);
 };

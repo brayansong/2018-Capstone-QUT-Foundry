@@ -2,7 +2,7 @@ const jwtSecret = require("./jwtConfig");
 const bcrypt = require("bcrypt");
 const Sequelize = require("sequelize");
 
-module.exports = function(passport, User) {
+module.exports = function (passport, User) {
   const PASSWORD_SALT = 12;
   const Op = Sequelize.Op;
 
@@ -21,6 +21,13 @@ module.exports = function(passport, User) {
         session: false
       },
       (email, password, done) => {
+        console.log(email)
+        if (!email.includes(["@qut.edu.au"])) {
+          return done(null, false, {
+            message: "This email is not a qut email "
+          });
+        }
+
         try {
           User.findOne({
             where: {
@@ -90,7 +97,7 @@ module.exports = function(passport, User) {
   );
 
   const opts = {
-    jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme("JWT"),
+    jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme("BEARER"),
     secretOrKey: jwtSecret.secret
   };
 

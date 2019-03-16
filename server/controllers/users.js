@@ -25,13 +25,13 @@ module.exports = {
   retrieve(req, res) {
     return User.findOne({
       where: {
-        id: req.params.id
+        email: req.query.email
       }
     })
       .then(user => {
         if (!user) {
           return res.status(404).send({
-            message: "There are no user"
+            message: "There are no responding user"
           });
         }
         return res.status(200).send(user);
