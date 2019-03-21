@@ -192,7 +192,7 @@ module.exports = {
 
         }
 
-        if (!req.body.email.includes(["@qut.edu.au"])) {
+        if (!req.body.email.includes(["@qut.edu.au"]) || !req.body.email.includes(["@connect.qut.edu.au"])) {
           return res.status(404).send({
             message: "This email is not a qut email "
           });

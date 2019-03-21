@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Log requests to the console.
 app.use(logger("dev"));
 
+
 // initialize passport
 app.use(passport.initialize());
 

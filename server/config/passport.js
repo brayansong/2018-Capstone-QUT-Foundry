@@ -22,7 +22,7 @@ module.exports = function (passport, User) {
       },
       (email, password, done) => {
         console.log(email)
-        if (!email.includes(["@qut.edu.au"])) {
+        if (!email.includes(["@qut.edu.au"]) || !email.includes(["@connect.qut.edu.au"])) {
           return done(null, false, {
             message: "This email is not a qut email "
           });
@@ -81,7 +81,9 @@ module.exports = function (passport, User) {
               bcrypt.compare(password, user.password).then(response => {
                 if (response !== true) {
                   return done(null, false, {
-                    message: "passwords do not match"
+                    message: {
+                      message: "passwords do not match"
+                    }
                   });
                 }
                 //user found & authenticated
