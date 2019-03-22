@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "server:dev": "nodemon ./bin/www",
+    "server:pro": "node ./bin/www",
     "client": "cd client && umi dev --port 80",
-    "dev": "concurrently --kill-others-on-fail \"yarn server:dev \" \"yarn client\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently --kill-others-on-fail \"npm run server:dev \" \"npm run client\"",
+    "testing": "concurrently --kill-others-on-fail \"npm run server:dev \" \"npm run test\"",
+    "test": " cd server/test && mocha --timeout 10000",
+    "production": "concurrently --kill-others-on-fail \"npm run server:pro \" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -22,11 +25,26 @@
   "homepage": "https://github.com/brayansong/2018-Capstone-QUT-Foundry#readme",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
+    "assert": "^1.4.1",
+    "babel": "^6.23.0",
+    "bcrypt": "^3.0.4",
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "cors": "^2.8.5",
+    "email-templates": "^2.7.1",
     "express": "^4.16.4",
+    "handlebars": "^4.1.0",
+    "jsonwebtoken": "^8.5.0",
     "morgan": "^1.9.1",
+    "nodemailer": "^4.7.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.8.1",
     "pg-hstore": "^2.3.2",
+    "pug": "^2.0.3",
     "sequelize": "^4.43.0"
   },
   "devDependencies": {
