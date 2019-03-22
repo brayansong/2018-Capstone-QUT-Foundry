@@ -13,7 +13,22 @@ let routes = [
     "component": require('../index.js').default
   },
   {
-    "component": () => React.createElement(require('C:/Users/JeffreyLau/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
+    "path": "/Confirmid",
+    "exact": true,
+    "component": require('../Confirmid.js').default
+  },
+  {
+    "path": "/Login",
+    "exact": true,
+    "component": require('../Login.js').default
+  },
+  {
+    "path": "/Register",
+    "exact": true,
+    "component": require('../Register.js').default
+  },
+  {
+    "component": () => React.createElement(require('C:/Users/N9830642/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
   }
 ];
 window.g_routes = routes;
