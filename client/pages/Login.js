@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "../component/theme";
+import Link from 'umi/link';
 
 const styles = theme => ({
   main: {
@@ -73,7 +74,7 @@ function SignIn(props) {
             label="Remember me"
           />
           <Typography variant="caption" gutterBottom>
-          Forgot your password?
+          <Link to="#">Forgot your password?</Link>
         </Typography>
           <Button
             type="submit"
@@ -84,15 +85,16 @@ function SignIn(props) {
           >
             Login
           </Button>
+          <Link to="/Confirmid">
           <Button
-            type="register"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
           >
-            Register
-          </Button>
+           Register
+          </Button></Link>
+        
         </form>
       </Paper>
     </main>
