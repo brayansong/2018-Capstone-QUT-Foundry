@@ -1,4 +1,4 @@
-import styles from "./index.css";
+import styles from "./custom.css";
 import NavBar from "../component/NavBar";
 import Menu from "../component/Menu";
 import QutSection1 from "../component/section/QutSection1";
@@ -7,7 +7,7 @@ import QutSection2 from "../component/section/QutSection2";
 import FooterParent from "../component/FooterParent";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "../component/theme";
-export default function() {
+export default function () {
   return (
     <MuiThemeProvider theme={theme}>
       <div className={styles.normal}>

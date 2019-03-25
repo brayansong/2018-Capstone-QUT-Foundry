@@ -15,7 +15,11 @@ const theme = createMuiTheme({
   },
   status: {
     danger: "orange"
-  }
+  },
+  root: {
+    background: 'black',
+    height: '100%'
+  },
 });
 
 export default theme;

@@ -28,7 +28,12 @@ let routes = [
     "component": require('../Register.js').default
   },
   {
-    "component": () => React.createElement(require('C:/Users/N9830642/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
+    "path": "/styles",
+    "exact": true,
+    "component": require('../styles.js').default
+  },
+  {
+    "component": () => React.createElement(require('C:/Users/JeffreyLau/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
   }
 ];
 window.g_routes = routes;
