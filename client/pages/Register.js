@@ -49,11 +49,22 @@ const styles = theme => ({
   },
 });
 
-class  SignIn extends Component{
+class RegisterForm extends Component{
   
-  state = {
-    type:'',
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      username:'',
+      password1:'',
+      password2:'',
+      email:'',
+      type:'',
+    };
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.submit = this.submit.bind(this);
+  }
+  
 
   componentDidMount() {
     this.setState({
@@ -61,11 +72,18 @@ class  SignIn extends Component{
     });
   }
 
-
   handleChange = event => {
-    console.log( event.target.value)
-    this.setState({ [event.target.name]: event.target.value });
+    // console.log( event.target.value)
+    // this.setState({ [event.target.name]: event.target.value });
+    let name = event.target.name;
+    let value = event.target.value;
+    console.log(name,value);
+
+    let data = {};
+    data[name]= value;
+    this.setState(data);
   };
+
 render(){
   const { classes } = this.props;
   return (
@@ -77,22 +95,22 @@ render(){
         <Typography component="h1" variant="h5">
           QUT Foundry Register
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={this.submit}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="username">Username</InputLabel>
-            <Input id="username" name="username" autoComplete="username" autoFocus />
+            <Input id="username" name="username" value={this.state.username} autoComplete="username" autoFocus onChange={this.handleChange}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password1" type="password1" id="password1" autoComplete="current-password" />
+            <Input name="password1" type="password1" id="password1" value={this.state.password1} autoComplete="current-password" onChange={this.handleChange}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="confirm password">Confirm Password</InputLabel>
-            <Input name="password2" type="password2" id="password2" autoComplete="confirm-password" />
+            <Input name="password2" type="password2" id="password2" value={this.state.password2} autoComplete="confirm-password" onChange={this.handleChange}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" autoComplete="email" />
+            <Input id="email" name="email" autoComplete="email" value={this.state.email} onChange={this.handleChange}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="type">Type</InputLabel>
@@ -124,10 +142,26 @@ render(){
     </MuiThemeProvider>
   );
 }
+
+submit(e){
+  e.preventDefault();
+  window.axios.post('http://qutfoundry.jeffreylaudex.tk:3000',
+  {username:this.state.username,
+    password1:this.state.password1,
+    password2:this.state.password2,
+    email:this.state.email,
+    type:this.state.type})
+  .then(response=>{
+    console.log('response');
+
+    localStorage.setItem('token',response.data.auth.access_token)
+  })
+  ;
+}
 }
 
-SignIn.propTypes = {
+RegisterForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(RegisterForm);

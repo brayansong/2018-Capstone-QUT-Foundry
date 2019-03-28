@@ -23,12 +23,17 @@ let routes = [
     "component": require('../Login.js').default
   },
   {
+    "path": "/LoginForm",
+    "exact": true,
+    "component": require('../LoginForm.js').default
+  },
+  {
     "path": "/Register",
     "exact": true,
     "component": require('../Register.js').default
   },
   {
-    "component": () => React.createElement(require('C:/Users/N9830642/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
+    "component": () => React.createElement(require('C:/Users/WIN-8/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'pages', hasRoutesInConfig: false })
   }
 ];
 window.g_routes = routes;
