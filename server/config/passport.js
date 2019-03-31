@@ -22,7 +22,11 @@ module.exports = function (passport, User) {
       },
       (email, password, done) => {
         console.log(email)
+<<<<<<< HEAD
         if (!email.includes(["@qut.edu.au"]) || !email.includes(["@connect.qut.edu.au"])) {
+=======
+        if (!(req.body.email.includes(["@qut.edu.au"]) || req.body.email.includes(["@connect.qut.edu.au"]))) {
+>>>>>>> authentication
           return done(null, false, {
             message: "This email is not a qut email "
           });

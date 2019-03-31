@@ -4,6 +4,7 @@
   "description": "This project is a capstone project for qut foundry",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "server:dev": "nodemon ./bin/www",
     "server:pro": "node ./bin/www",
     "client": "cd client && umi dev --port 80",
@@ -11,6 +12,13 @@
     "testing": "concurrently --kill-others-on-fail \"npm run server:dev \" \"npm run test\"",
     "test": " cd server/test && mocha --timeout 10000",
     "production": "concurrently --kill-others-on-fail \"npm run server:pro \" \"npm run client\""
+=======
+    "server": "nodemon ./bin/www",
+    "client": "cd client && umi dev --port 80",
+    "dev": "concurrently --kill-others-on-fail \"npm run server \" \"npm run client\"",
+    "testing": "concurrently --kill-others-on-fail \"node  ./bin/www \" \"npm run test\"",
+    "test": " cd server/test && mocha --timeout 10000"
+>>>>>>> authentication
   },
   "repository": {
     "type": "git",
@@ -26,6 +34,10 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "assert": "^1.4.1",
+<<<<<<< HEAD
+=======
+    "axios": "^0.18.0",
+>>>>>>> authentication
     "babel": "^6.23.0",
     "bcrypt": "^3.0.4",
     "bluebird": "^3.5.3",
@@ -33,6 +45,10 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+=======
+    "dotenv": "^7.0.0",
+>>>>>>> authentication
     "email-templates": "^2.7.1",
     "express": "^4.16.4",
     "handlebars": "^4.1.0",
