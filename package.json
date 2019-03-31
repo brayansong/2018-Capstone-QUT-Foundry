@@ -24,6 +24,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "assert": "^1.4.1",
+    "axios": "^0.18.0",
     "babel": "^6.23.0",
     "bcrypt": "^3.0.4",
     "bluebird": "^3.5.3",

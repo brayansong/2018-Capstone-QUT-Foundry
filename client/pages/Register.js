@@ -19,11 +19,7 @@ import { Select, MenuItem } from '@material-ui/core';
 import { cpus } from 'os';
 
 
-class SignIn extends Component {
-
-  state = {
-    type: '',
-  };
+class Register extends Component {
 
   componentDidMount() {
     this.setState({
@@ -96,8 +92,8 @@ class SignIn extends Component {
   }
 }
 
-SignIn.propTypes = {
+Register.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(Register);

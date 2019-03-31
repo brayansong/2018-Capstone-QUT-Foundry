@@ -18,67 +18,76 @@ import styles from "./styles"
 import Link from 'umi/link';
 
 
-function SignIn(props) {
-  const { classes } = props;
+class Login extends React.Component {
 
-  return (
-    <MuiThemeProvider theme={theme}>
-      <main >
-        <CssBaseline />
-        <div className={classes.middle}>
-          <Paper className={classes.paper}>
+  constructor(props) {
+    super(props);
 
-            <Typography component="h1" variant="h5">
-              QUT Foundry Login
-</Typography>
-            <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Username</InputLabel>
-                <Input id="email" name="email" autoComplete="email" autoFocus />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input name="password" type="password" id="password" autoComplete="current-password" />
-              </FormControl>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Typography variant="caption" gutterBottom>
-                <Link to="#">Forgot your password?</Link>
+    this.state = {
+
+    };
+  }
+  render() {
+    const { classes } = this.props;
+    return (
+      <MuiThemeProvider theme={theme}>
+        <main >
+          <div className={classes.middle}>
+            <Paper className={classes.paper}>
+
+              <Typography component="h1" variant="h5">
+                QUT Foundry Login
               </Typography>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Login
-</Button>
-              <Link to="/Confirmid">
+              <form className={classes.form}>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="email">Username</InputLabel>
+                  <Input id="email" name="email" autoComplete="email" autoFocus />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input name="password" type="password" id="password" autoComplete="current-password" />
+                </FormControl>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Typography variant="caption" gutterBottom>
+                  <Link to="#">Forgot your password?</Link>
+                </Typography>
                 <Button
+                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
                   className={classes.submit}
                 >
-                  Register
-</Button>
-              </Link>
+                  Login
+  </Button>
+                <Link to="/Confirmid">
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Register
+  </Button>
+                </Link>
 
-            </form>
-          </Paper>
+              </form>
+            </Paper>
 
-        </div>
+          </div>
 
-      </main>
-    </MuiThemeProvider>
-  );
+        </main>
+      </MuiThemeProvider>
+    );
+  }
+
 }
 
-SignIn.propTypes = {
+Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(Login);

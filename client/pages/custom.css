@@ -1,0 +1,17 @@
+/* 
+.normal {
+  background: #79DEF2;
+}
+ */
+body {
+  margin: 0;  
+}
+
+html, body, #root {
+  height: 100%;
+} 
+
+a:-webkit-any-link {
+  color:inherit;
+  text-decoration: inherit
+}
