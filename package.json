@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon ./bin/www",
-    "client": "cd client && umi dev --port 80",
-    "dev": "concurrently --kill-others-on-fail \"npm run server \" \"npm run client\"",
+    "client:W": "cd client && npm run start:W ",
+    "client:U": "cd client && npm run start:U ",
+    "dev:W": "concurrently --kill-others-on-fail \"npm run server \" \"npm run client:W\"",
+    "dev:U": "concurrently --kill-others-on-fail \"npm run server \" \"npm run client:U\"",
     "testing": "concurrently --kill-others-on-fail \"node  ./bin/www \" \"npm run test\"",
     "test": " cd server/test && mocha --timeout 10000"
   },
