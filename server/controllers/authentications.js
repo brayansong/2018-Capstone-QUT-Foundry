@@ -192,11 +192,12 @@ module.exports = {
 
         }
 
-        if (!req.body.email.includes(["@qut.edu.au"]) || !req.body.email.includes(["@connect.qut.edu.au"])) {
+        if (!(req.body.email.includes(["@qut.edu.au"]) || req.body.email.includes(["@connect.qut.edu.au"]))) {
           return res.status(404).send({
             message: "This email is not a qut email "
           });
         }
+
         const token = jwt.sign({ email: req.body.email, createdAt: Date.now(), role: req.body.role }, jwtSecret.secret, {
           expiresIn: "7 d"
         });

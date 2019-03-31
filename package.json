@@ -32,6 +32,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
     "email-templates": "^2.7.1",
     "express": "^4.16.4",
     "handlebars": "^4.1.0",
