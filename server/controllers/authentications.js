@@ -3,6 +3,7 @@ const jwtSecret = require("../config/jwtConfig");
 const User = require("../models").User;
 const RegisterToken = require("../models").RegisterToken;
 const UserInfo = require("../models").UserInfo;
+const UserType = require("../models").UserType;
 const jwt = require("jsonwebtoken");
 var NodeMailer = require('../../nodeMailerWithTemp');
 const bcrypt = require("bcrypt");
@@ -24,11 +25,11 @@ module.exports = {
     })
       .then(token => {
         if (!token) {
-          console.log(token)
 
           res.status(400).send({ message: "Token not exist" });
         }
         else {
+          console.log("ready to register")
           passport.authenticate("register", (err, user, info) => {
             if (err) {
               res.status(400).send({ message: "register unsuccessful" });
@@ -38,20 +39,36 @@ module.exports = {
               res.send(info.message);
             } else {
               req.logIn(user, err => {
+                console.log("#######################")
+                console.log(user)
                 User.findOne({
                   where: {
                     email: user.email
                   }
                 }).then(user => {
                   user.update({
-                    active: true
+                    active: false,
+                    qutId: req.body.qutId,
                   });
+                  let roleType
+                  if (req.body.type === "Admin") {
+                    roleType = 0
+                  }
+                  if (req.body.type === "Mentor") {
+                    roleType = 1
+                  }
+                  if (req.body.type === "Entrepreneur") {
+                    roleType = 2
+                  }
+
                   UserInfo.create({
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     dob: req.body.dob,
                     gender: req.body.gender,
                     userId: user.id,
+                    userType: roleType,
+
                   })
                     .then(() => {
                       token.destroy()
@@ -84,16 +101,40 @@ module.exports = {
           User.findOne({
             where: {
               email: user.email
-            }
+            },
           }).then(user => {
-            const token = jwt.sign({ email: user.email }, jwtSecret.secret, {
-              expiresIn: "365 d"
-            });
-            res.status(200).send({
-              auth: true,
-              token: token,
-              message: user.email + " login successful"
-            });
+            UserInfo.findOne({
+              where: {
+                userId: user.id
+              },
+              include: [{
+                model: UserType,
+                attributes: { exclude: ['createdAt', 'updatedAt'] }
+              }],
+
+            })
+              .then(userInfo => {
+                const token = jwt.sign({
+                  email: user.email,
+                  firstName: userInfo.firstName,
+                  lastName: userInfo.lastName,
+                  dob: userInfo.dob,
+                  gender: userInfo.gender,
+                  userId: userInfo.userId,
+                  userType: userInfo.UserType.type,
+                  qutId: userInfo.qutId,
+
+
+                }, jwtSecret.secret, {
+                    expiresIn: "365 d"
+                  });
+                res.status(200).send({
+                  auth: true,
+                  token: token,
+                  message: user.email + " login successful"
+                });
+              })
+
           });
         });
       }
@@ -212,7 +253,7 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 role: req.body.role,
-                link: process.env.HOST_NAME + "/register?email=" + req.body.email + "&token=" + result.token
+                link: process.env.HOST_NAME + "#/register?email=" + req.body.email + "&token=" + result.token
               }
             ]
             NodeMailer.loadTemplate('registerInvitation', users)

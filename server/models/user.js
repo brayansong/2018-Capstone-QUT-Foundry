@@ -12,13 +12,18 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       lossPassToken: DataTypes.STRING,
+
       lastLogin: DataTypes.STRING,
       active: DataTypes.BOOLEAN
     },
     {}
   );
-  User.associate = function(models) {
+  User.associate = function (models) {
     // associations can be defined here
+    // User.hasOne(models.UserInfo)
+    User.hasMany(models.UserInfo, {
+      foreignKey: 'userId',
+    });
   };
   return User;
 };

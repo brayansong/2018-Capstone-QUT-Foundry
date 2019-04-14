@@ -21,26 +21,27 @@ module.exports = function (passport, User) {
         session: false
       },
       (email, password, done) => {
-        console.log(email)
-        if (!(req.body.email.includes(["@qut.edu.au"]) || req.body.email.includes(["@connect.qut.edu.au"]))) {
-          return done(null, false, {
-            message: "This email is not a qut email "
-          });
-        }
-
+        /* 
+                if (!(req.body.email.includes(["@qut.edu.au"]) || req.body.email.includes(["@connect.qut.edu.au"]))) {
+                  return done(null, false, {
+                    message: "This email is not a qut email "
+                  });
+                } */
+        console.log("i ergjieorgjieorjg")
         try {
           User.findOne({
             where: {
               email: email
             }
           }).then(user => {
+            console.log("i am here rwer awe")
             if (user != null) {
               //user with that detail is founded
-              return done(null, false, {
-                message: "email already taken"
-              });
+              console.log("user exist")
+              return done(err);
             } else {
               //new user detail
+              console.log("OK!")
               bcrypt.hash(password, PASSWORD_SALT).then(hashedPassword => {
                 User.create({
                   email,
@@ -52,6 +53,7 @@ module.exports = function (passport, User) {
             }
           });
         } catch (err) {
+          console.log("something goes wrong")
           done(err);
         }
       }

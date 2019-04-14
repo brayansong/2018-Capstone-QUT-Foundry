@@ -7,4 +7,10 @@ module.exports = app => {
 
   require("./users")(app);
   require("./authentications")(app);
+
+  require("./expertise")(app);
+  require("./availableTime")(app);
+  require("./booking")(app);
+  require("./faculty")(app);
+
 };

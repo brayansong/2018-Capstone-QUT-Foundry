@@ -11,6 +11,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   list(req, res) {
+
     return User.findAll()
       .then(users => {
         if (!users) {
@@ -25,7 +26,7 @@ module.exports = {
   retrieve(req, res) {
     return User.findOne({
       where: {
-        email: req.query.email
+        id: req.query.id
       }
     })
       .then(user => {
@@ -34,7 +35,7 @@ module.exports = {
             message: "There are no responding user"
           });
         }
-        return res.status(200).send(user);
+        return res.status(200).send([user]);
       })
       .catch(error => res.status(400).send(error));
   },

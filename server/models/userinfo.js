@@ -5,10 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     dob: DataTypes.DATE,
     gender: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    userType: DataTypes.INTEGER,
+    qutId: DataTypes.INTEGER,
   }, {});
-  UserInfo.associate = function(models) {
+  UserInfo.associate = function (models) {
     // associations can be defined here
+    UserInfo.belongsTo(models.UserType, { foreignKey: 'userType' })
   };
   return UserInfo;
 };

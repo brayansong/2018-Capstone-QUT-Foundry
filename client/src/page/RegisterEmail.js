@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
+
+import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -12,6 +14,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 /* import LockOutlinedIcon from '@material-ui/icons/LockOutlined'; */
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { Select, MenuItem } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import SERVER_DOMAIN from "../constants/server";
@@ -57,12 +60,18 @@ class RegisterEmail extends Component {
     this.state = {
       email: null,
       name: null,
-      role: null
+      role: null,
+      message: 'login',
+      snack: false,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
 
   }
+  handleSnackClose = () => {
+    this.setState({ snack: false });
+  };
+
   onSubmit(e) {
     e.preventDefault();
     const credentials = {
@@ -73,13 +82,12 @@ class RegisterEmail extends Component {
 
 
     axios.post(SERVER_DOMAIN + "/api/register/invitation", credentials)
-      .then(response => {
-        console.log('response');
-        this.setState({ loggedIn: true });
-        localStorage.setItem('token', response.data.auth.access_token)
+      .then(success => {
+        console.log(success.response)
+        this.setState({ snack: true, message: 'email sent' });
       })
       .catch(err => {
-        alert(err)
+        this.setState({ snack: true, message: err.response.data.message });
       })
       ;
   }
@@ -105,9 +113,25 @@ class RegisterEmail extends Component {
                 <InputLabel htmlFor="password">Email</InputLabel>
                 <Input name="email" type="email" id="email" />
               </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="type">Type</InputLabel>
-                <Input name="type" type="type" id="type" />
+              <FormControl margin="normal" className={classes.formControl} required fullWidth>
+                <InputLabel htmlFor="type-native-simple">type</InputLabel>
+                <Select
+                  native
+                  value={this.state.type}
+                  fullWidth
+                  /*                   onChange={(e) => this.setState({
+                                      type: e.target.value
+                                    })} */
+                  inputProps={{
+                    name: 'type',
+                    id: 'type-native-simple',
+                  }}
+                >
+                  <option value="" />
+                  <option value={'Admin'}>Admin</option>
+                  <option value={'Mentor'}>Mentor</option>
+                  <option value={'Entrepreneur'}>Entrepreneur</option>
+                </Select>
               </FormControl>
               <Button
                 type="submit"
@@ -121,6 +145,16 @@ class RegisterEmail extends Component {
             </form>
           </Paper>
         </main>
+
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={this.state.snack}
+          onClose={this.handleSnackClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.message}</span>}
+        />
       </MuiThemeProvider>
     );
   }

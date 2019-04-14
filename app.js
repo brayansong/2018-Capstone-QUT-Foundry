@@ -9,6 +9,15 @@ require("dotenv").config();
 const app = express();
 const API_PORT = process.env.API_PORT || 3000;
 
+
+app.use((req, res, next) => {
+  res.append("Access-Control-Expose-Headers", "X-Total-Count");
+  res.header("Access-Control-Allow-Origin", "*");
+  // res.append('X-Total-Count', 30);
+
+  next();
+});
+
 // use CORS
 app.use(Cors());
 

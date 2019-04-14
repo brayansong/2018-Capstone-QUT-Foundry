@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { userLogin } from 'react-admin';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-
+import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -12,6 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import withStyles from '@material-ui/core/styles/withStyles';
+import AuthProvider from "../authProvider.js";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 /* import Link from 'umi/link'; */
@@ -56,6 +57,8 @@ class MyLoginPage extends Component {
         this.state = {
             email: '',
             password: '',
+            message: 'login',
+            snack: false,
             loggedIn: false,
         };
 
@@ -74,6 +77,10 @@ class MyLoginPage extends Component {
         this.setState(data);
     }
 
+    handleSnackClose = () => {
+        this.setState({ snack: false });
+    };
+
     submit = (e) => {
         e.preventDefault();
         // gather your data/credentials here
@@ -82,10 +89,27 @@ class MyLoginPage extends Component {
             password: this.state.password
         };
 
+        console.log("userLogin")
+        console.log(userLogin)
+        console.log("userLogin")
         // Dispatch the userLogin action (injected by connect)
-        this.props.userLogin(credentials);
-    }
+        AuthProvider("AUTH_LOGIN", credentials)
+            .then(result => {
+                console.log("success")
+                console.log(result)
+                this.goHome()
+            })
+            .catch(err => {
+                console.log("err")
+                console.log(err.message)
+                this.setState({ snack: true, message: err.message });
+            })
 
+    }
+    goHome = () => {
+        this.props.history.push("")
+
+    }
     render() {
         const { classes } = this.props;
 
@@ -138,7 +162,18 @@ class MyLoginPage extends Component {
 
                         </form>
                     </Paper>
+
                 </main>
+
+                <Snackbar
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                    open={this.state.snack}
+                    onClose={this.handleSnackClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{this.state.message}</span>}
+                />
             </MuiThemeProvider>
         );
     }
