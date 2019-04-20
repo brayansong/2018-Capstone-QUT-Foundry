@@ -22,6 +22,44 @@ const theme = createMuiTheme({
     },
     status: {
         danger: "orange"
+    },
+    overrides: {
+        Appointment: {
+            appointment: {
+                background: '#003C71'
+            }
+        },
+        HorizontalViewLayout: {
+            container: {
+                height: 400
+            }
+        },
+        VerticalViewLayout: {
+            container: {
+                height: 500
+            }
+        },
+        MuiOutlinedInput: {
+            input: {
+                padding: '14px 14px'
+            }
+        },
+        MuiPrivateNotchedOutline: {
+            root: {
+                borderRadius: 0
+            }
+        },
+        MuiPaper: {
+            rounded: {
+                borderRadius: 0
+            }
+        },
+        MuiButton: {
+            root: {
+                borderRadius: 0
+            }
+        }
+
     }
 });
 

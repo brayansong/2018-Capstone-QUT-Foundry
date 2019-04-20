@@ -7,6 +7,12 @@ import loginPage from './page/login'
 import customRoutes from './customRoutes';
 import theme from './component/theme'
 import Dashboard from './page/Dashboard';
+import { BookingList, BookingEdit } from './page/Booking'
+import AvailableTimeCreate from './page/availableTimes/Create'
+import AvailableTimeRead from './page/availableTimes/Read'
+
+import Account from './page/Account'
+
 
 const httpClient = (url, options = {}) => {
   if (!options.headers) {
@@ -33,26 +39,20 @@ const App = () => (
       permissions === 'Admin'
         ? <Resource name="users" list={ListGuesser} />
         : null,
-      /*       permissions === 'Mentor'
-              ? <Resource name="users" list={ListGuesser} />
-              : null, */
-      permissions === 'Mentor'
-        ? <Resource name="expertises" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} />
-        : null,
-      permissions === 'Mentor'
-        ? <Resource name="faculties" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} />
-        : null,
-      permissions === 'Mentor'
-        ? <Resource name="bookings" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} />
-        : null,
-      permissions === 'Mentor'
-        ? <Resource name="faculties" list={ListGuesser} show={ShowGuesser} edit={EditGuesser} />
-        : null,
 
+      permissions === 'Mentor'
+        ? <Resource name="bookings" list={BookingList} show={ShowGuesser} edit={BookingEdit} />
+        : null,
+      permissions === 'Mentor'
+        ? <Resource name="availableTimes" create={AvailableTimeCreate} list={AvailableTimeRead} />
+        : null,
       permissions === 'Admin'
         ? <Resource name="users" list={ListGuesser} />
         : null,
       /*  <Resource name="users" list={ListGuesser} />, */
+      permissions === 'Admin' || permissions === 'Mentor' || permissions === 'Member'
+        ? <Resource name="personal" list={ListGuesser} />
+        : null,
       <Resource name="login" />
     ]}
 

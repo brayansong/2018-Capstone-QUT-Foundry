@@ -8,7 +8,73 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root {
+  height: 100%;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.action-button {
+  margin-left: auto !important
+}
+
+a:-webkit-any-link {
+  color: initial !important;
+  /* cursor: initial !important; */
+  /* text-decoration: initial !important; */
+}
+#login-home  {
+ 
+  background-size: cover;
+  height: 1080px;
+  margin: -106px 0 0 0;
+  padding: 0;
+  position: relative;
+}
+
+#qut-logo {
+    background: url("/images/qut-logo_2x.png")  no-repeat scroll 0 0 transparent;
+    background-size: 291px 52px;
+    border: medium none;
+    display: block;
+    height: 52px;
+    left: 20px;
+    outline: medium none;
+    position: absolute;
+    text-indent: -9999px;
+    top: 12px;
+    width: 291px;
+}
+#real-world {
+  background: url("/images/real-world_2x.png") no-repeat scroll 342px -12px transparent;
+  height: 76px;
+  background-size: 254px 92px;
+  margin: 0 auto;
+  max-width: 1400px;
+  position: relative;
+  width: 100%;
+}
+
+#Login-header {
+    background-color: #003C71;
+    border-bottom: 1px solid #114B7F;
+    text-shadow: 0 1px 1px #114B7F;
+    color: #fff;
+    font-size: 24px !important;
+    font-weight: normal;
+    line-height: 24px;
+    text-align: center;
+    width: 100%;
+    padding: 21px;
+    width: calc(100% + 40px);
+    margin-top: -20px
+}
+.d-flex {
+  display: flex
+}
+
+.ml-auto {
+  margin-left: auto !important
 }
