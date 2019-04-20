@@ -36,7 +36,7 @@ require("./server/config/passport")(passport, require("./server/models").User);
 require("./server/routes")(app);
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get("*", (req, res) =>
-  res.status(200).send({
+  res.status(400).send({
     message: "This Api not yet exist "
   })
 );

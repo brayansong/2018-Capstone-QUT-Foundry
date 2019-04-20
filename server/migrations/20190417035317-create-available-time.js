@@ -11,8 +11,14 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      time: {
+      startDate: {
         type: Sequelize.DATE
+      },
+      endDate: {
+        type: Sequelize.DATE
+      },
+      title: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

@@ -2,7 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   const AvailableTime = sequelize.define('AvailableTime', {
     userId: DataTypes.INTEGER,
-    time: DataTypes.DATE
+    startDate: DataTypes.DATE,
+    endDate: DataTypes.DATE,
+    title: DataTypes.STRING
   }, {});
   AvailableTime.associate = function(models) {
     // associations can be defined here

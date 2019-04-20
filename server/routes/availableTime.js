@@ -1,15 +1,15 @@
-const expertiseController = require("../controllers").expertise;
+const availableTimeController = require("../controllers").availableTime;
 const authenticationsController = require("../controllers").authentications;
 
 module.exports = app => {
 
   app.route("/api/availableTimes")
-    .get(authenticationsController.permission(), expertiseController.list)
-    .post(authenticationsController.permission(), expertiseController.create)
+    .get(authenticationsController.permission(), availableTimeController.list)
+    .post(authenticationsController.permission(), availableTimeController.create)
 
   app.route("/api/availableTimes/:id")
-    .get(authenticationsController.permission(), expertiseController.retrieve)
-    .put(authenticationsController.permission(user = ['me', 'admin']), expertiseController.update)
-    .delete(authenticationsController.permission(user = ['me', 'admin']), expertiseController.destroy)
+    .get(authenticationsController.permission(), availableTimeController.retrieve)
+    .put(authenticationsController.permission(user = ['me', 'admin']), availableTimeController.update)
+    .delete(authenticationsController.permission(user = ['me', 'admin']), availableTimeController.destroy)
 
 };

@@ -10,16 +10,26 @@ module.exports = app => {
       }))
 
 
+  /*   app
+      .route("/api/users")
+      .get(authenticationsController.permission(), usersController.retrieve)
+      .put(authenticationsController.permission(user = ['me', 'admin']), usersController.update)
+      .delete(authenticationsController.permission(user = ['me', 'admin']), usersController.destroy)
+   */
+
+
+
   app
     .route("/api/users")
     .get(authenticationsController.permission(), usersController.retrieve)
     .put(authenticationsController.permission(user = ['me', 'admin']), usersController.update)
     .delete(authenticationsController.permission(user = ['me', 'admin']), usersController.destroy)
 
+
   app
-    .route("/api/users?id")
-    .get(authenticationsController.permission(), usersController.retrieve)
-    .put(authenticationsController.permission(user = ['me', 'admin']), usersController.update)
-    .delete(authenticationsController.permission(user = ['me', 'admin']), usersController.destroy)
+    .route("/api/personal")
+    .get(authenticationsController.permission(), usersController.personal)
+  //.put(authenticationsController.permission(user = ['me', 'admin']), usersController.personalUpdate)
+
 
 };

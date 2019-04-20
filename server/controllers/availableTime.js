@@ -8,6 +8,19 @@ module.exports = {
     console.log(req.query._sort)
     console.log(req.query._start)
 
+    if (req.query._end === undefined && req.query._order === undefined && req.query._sort === undefined && req.query._start === undefined) {
+      return AvailableTime.findAll({
+
+        where: {
+          userId: req.user.id,
+        },
+        order: [
+        ],
+
+      })
+        .then(availableTimes => res.status(200).send(availableTimes))
+    }
+
     var end = req.query._end
     var order = req.query._order
     var sort = req.query._sort //!= undefined ? [ JSON.parse(req.query.sort)] : null ;
@@ -43,6 +56,8 @@ module.exports = {
     return AvailableTime.create({
       title: req.body.title,
       userId: req.user.id,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
     })
       .then(availableTimes => res.status(201).send(availableTimes))
       .catch(error => res.status(400).send(error));
@@ -80,6 +95,8 @@ module.exports = {
           .update({
             title: req.body.title,
             userId: req.user.id,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
           })
           .then(availableTimes => res.status(201).send(availableTimes))
           .catch(error => res.status(400).send(error));

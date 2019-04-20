@@ -42,7 +42,11 @@ module.exports = {
   create(req, res) {
     return Booking.create({
       availableTimeID: req.body.availableTimeID,
-      userId: req.user.id,
+      userId: req.user.userId,
+      room: req.user.room,
+      facultyId: req.user.facultyId,
+      title: req.user.title,
+      description: req.user.description
     })
       .then(books => res.status(201).send(books))
       .catch(error => res.status(400).send(error));
@@ -79,6 +83,11 @@ module.exports = {
         return booking
           .update({
             availableTimeID: req.body.availableTimeID,
+            userId: req.user.userId,
+            room: req.user.room,
+            facultyId: req.user.facultyId,
+            title: req.user.title,
+            description: req.user.description
           })
           .then(books => res.status(201).send(books))
           .catch(error => res.status(400).send(error));
