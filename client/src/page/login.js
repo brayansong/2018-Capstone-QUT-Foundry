@@ -19,7 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Redirect, Link } from 'react-router-dom'
-import LoginHeader from '../component/LoginHeader'
+import LoginHeader from '../component/header/LoginHeader'
 
 const styles = theme => ({
     main: {

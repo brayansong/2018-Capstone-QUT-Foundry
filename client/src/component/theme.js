@@ -20,6 +20,23 @@ const theme = createMuiTheme({
             darkest: "#012A4C"
         },
     },
+    typography: {
+        "fontFamily": "\"Helvetica\", \"Arial\", sans-serif",
+        fontWeightRegular: 400,
+        fontWeightMedium: 600,
+
+        body1: {
+            fontWeight: 500,
+        },
+        subtitle1: {
+            fontSize: 12,
+        },
+        button: {
+            textTransform: 'initial',
+            fontWeight: 'bolder',
+            fontSize: 15.3
+        },
+    },
     status: {
         danger: "orange"
     },
@@ -54,12 +71,22 @@ const theme = createMuiTheme({
                 borderRadius: 0
             }
         },
+
         MuiButton: {
             root: {
-                borderRadius: 0
+                borderRadius: 0,
+            }
+        },
+        MuiTab: {
+            textColorInherit: {
+                opacity: 0.9
+            }
+        },
+        MuiPaper: {
+            elevation4: {
+                boxShadow: "none"
             }
         }
-
     }
 });
 

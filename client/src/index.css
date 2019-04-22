@@ -23,7 +23,7 @@ code {
 a:-webkit-any-link {
   color: initial !important;
   /* cursor: initial !important; */
-  /* text-decoration: initial !important; */
+  text-decoration: initial !important;
 }
 #login-home  {
  
@@ -46,6 +46,31 @@ a:-webkit-any-link {
     text-indent: -9999px;
     top: 12px;
     width: 291px;
+}
+
+#qut-foundry-logo {
+  background: url("/images/svg/qut-logo-invert.svg")  no-repeat scroll 0 0 transparent;
+  /* background-size: 150px; */
+  background-position-y: center;
+  border: medium none;
+  display: block;
+  height: 52px;
+  outline: medium none;
+  text-indent: -9999px;
+
+  width: 291px;
+}
+#qutlogo {
+  background: url("/images/svg/qut-logo-invert.svg")  no-repeat scroll 0 0 transparent;
+  /* background-size: 150px; */
+  background-position-y: center;
+  border: medium none;
+  display: block;
+  height: 52px;
+  outline: medium none;
+  text-indent: -9999px;
+
+  width: 291px;
 }
 #real-world {
   background: url("/images/real-world_2x.png") no-repeat scroll 342px -12px transparent;
@@ -77,4 +102,13 @@ a:-webkit-any-link {
 
 .ml-auto {
   margin-left: auto !important
+}
+
+.container {
+  padding-left: 77px !important;
+  padding-right:77px !important; 
+}
+
+.menutab {
+  height:60px
 }

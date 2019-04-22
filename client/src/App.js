@@ -53,6 +53,7 @@ const App = () => (
       permissions === 'Admin' || permissions === 'Mentor' || permissions === 'Member'
         ? <Resource name="personal" list={ListGuesser} />
         : null,
+
       <Resource name="login" />
     ]}
 

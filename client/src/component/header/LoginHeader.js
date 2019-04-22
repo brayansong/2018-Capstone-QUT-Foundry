@@ -12,7 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import withStyles from '@material-ui/core/styles/withStyles';
-import AuthProvider from "../authProvider.js";
+import AuthProvider from "../../authProvider.js";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 /* import Link from 'umi/link'; */
