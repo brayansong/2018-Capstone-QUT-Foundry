@@ -50,7 +50,11 @@ class QutSection1 extends React.Component {
     const { value } = this.state;
 
     return (
-      <Frame>
+      <Frame >
+        <Typography variant="h4" gutterBottom>
+          {title}
+        </Typography>
+
         <Grid container className={classes.root} spacing={32}>
           <Grid item xs={6}>
             <CardMedia
@@ -60,15 +64,25 @@ class QutSection1 extends React.Component {
             />
           </Grid>
           <Grid item xs={6} className="flex-justify-center">
-            <Typography variant="h4" gutterBottom>
-              {title}
+            <Typography variant="h5" gutterBottom>
+              Our Location
             </Typography>
-
             <Typography variant="body1" gutterBottom>
-              {content}
+              Address: Room 204, Block D, Gardens Point, Brisbane QLD 4059<br />
+              Phone: +61 7 3138 9420<br />
+              Fax: +61 7 3138 9421
             </Typography>
+            {/*   <Typography variant="h5" gutterBottom>
+              Our Location
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              wefwef
+            </Typography> */}
+
+
           </Grid>
         </Grid>
+
       </Frame>
     );
   }

@@ -6,6 +6,8 @@ import Menu from "../../component/Menu";
 import QutSection1 from "../../component/section/QutSection1";
 import QUTButton1 from "../../component/QUTButton1";
 import QutSection2 from "../../component/section/QutSection2";
+import QutSection3 from "../../component/section/QutSection3";
+import QutSection4 from "../../component/section/QutSection4";
 import QutSlideShow from "../../component/section/QutSlideShow";
 import FooterParent from "../../component/FooterParent";
 import HomeHeader from "../../component/header/HomeHeader"
@@ -21,6 +23,7 @@ export default function () {
                 <QutSection1
                     title="Why Us"
                     background="white"
+                    image="/images/science-engineering-centre.jpg"
                     content={
                         <div>
                             Our research is focused on progress, pushing the boundaries and
@@ -35,10 +38,11 @@ export default function () {
                     }
                     buttonText="See More"
                 />
-                <QutSection2 title="Recent Event" />
-                <QutSection1
+                <QutSection2 title="Recent Event" background="#E8EEF3" />
+                <QutSection3
+                    background="#003866"
                     title="Get In Touch"
-                    theme="light"
+                    image="/images/workplace-1245776_1280.jpg"
                     content={
                         <div>
                             Discover the impact of cancer in your suburb or town, with
@@ -47,6 +51,10 @@ export default function () {
                         </div>
                     }
                     buttonText="See More"
+                />
+                <QutSection4
+                    title="Contact US"
+                    image="images/qutmap.png"
                 />
                 <FooterParent />
             </div>

@@ -112,3 +112,111 @@ a:-webkit-any-link {
 .menutab {
   height:60px
 }
+
+.owl-backgroundImage  {
+  height: 350px;
+  background-position: center;
+}
+
+.owl-prev {
+  top: calc(50% - 85px);
+  left: 0;
+  background-color: #0066b9;
+  cursor: pointer;
+  position: absolute;
+  z-index: 4;
+  text-indent: -99999px;
+  width: 65px;
+  height: 78px;
+  transition: 0.3s;
+}
+
+.owl-prev::before {
+  content: ' ';
+  position: absolute;
+  background-image: url("/images/svg/arrow-left-white.svg");
+  right: 10px;
+  top: 0;
+  width: 45px;
+  height: 100%;
+  background-position: center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+}
+
+.owl-next::before {
+  content: ' ';
+  position: absolute;
+  background-image: url("/images/svg/arrow-left-white.svg");
+  left: 10px;
+  top: 0;
+  width: 45px;
+  height: 100%;
+  background-position: center;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.owl-next {
+  top: calc(50% - 85px);
+  right: 0;
+  cursor: pointer;
+  background-color: #0066b9;
+  position: absolute;
+  z-index: 4;
+  text-indent: -99999px;
+  width: 65px;
+  height: 78px;
+  transition: 0.3s;
+}
+
+.owl-dots {
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.owl-dots .owl-dot {
+  display: inline-block;
+  zoom: 1;
+  display: inline;
+}
+.owl-dot:hover span {
+  background: #869791;
+}
+
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: -webkit-paged-y !important;
+}
+
+.justify-content-between {
+  -webkit-box-pack: justify !important;
+  -webkit-justify-content: space-between !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+}
+.flex-justify-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.w100 {
+  width: 100%;
+  display: block
+}
+
+.m-auto {
+  margin: 0 auto
+}
+.t-center {
+  text-align: center
+}
+.mt-5 {
+  margin-top: 1.5em
+}

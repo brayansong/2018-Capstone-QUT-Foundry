@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Slideshow from 'react-slidez';
 import { withStyles } from "@material-ui/core/styles";
-
-
+import OwlCarousel from 'react-owl-carousel2';
+import 'react-owl-carousel2/src/owl.carousel.css'; //Allows for server-side rendering.
 
 import Typography from "@material-ui/core/Typography";
+import QutSlideItem from "./QutSlideItem";
 
 function TabContainer(props) {
   return (
@@ -32,6 +33,17 @@ const styles = theme => ({
     width: "100%"
   }
 });
+const options = {
+  items: 1,
+  nav: true,
+  rewind: true,
+  autoplay: true
+};
+
+const events = {
+  /*   onDragged: function (event) {...},
+    onChanged: function(event) { ...} */
+};
 
 class QutSlideShow extends React.Component {
   state = {
@@ -47,21 +59,22 @@ class QutSlideShow extends React.Component {
     const { value } = this.state;
 
     return (
-      <div>
-        <Slideshow
-          showIndex
-          showArrows
-          autoplay
-          enableKeyboard
-          useDotIndex
-          slideInterval={2000}
-          defaultIndex={1}
-          slides={['/images/QUT1.jpg', '/images/QUT1.jpg']}
-          effect={'fade'}
-          height={'500px'}
-          width={'100%'}
+      <OwlCarousel ref="car" options={options} events={events}  >
+        <QutSlideItem
+          backgroundImageUrl="url('/images/QUT1.jpg')"
+          title="Foundry Information"
+          subText="Our science, engineering and mathematics (STEM) camp invites Year 11 students to a five-day research-intensive camp."
+          buttonText="Check To see more information"
         />
-      </div>
+        <QutSlideItem
+          backgroundImageUrl="url('/images/QUT-Media-4-1.jpg')"
+          title="Foundry Information"
+          subText="Our science, engineering and mathematics (STEM) camp invites Year 11 students to a five-day research-intensive camp."
+          buttonText="Check To see more information"
+        />
+
+
+      </OwlCarousel>
     );
   }
 }

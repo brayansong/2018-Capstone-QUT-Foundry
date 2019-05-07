@@ -29,13 +29,16 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2
   },
   button: {
-    color: theme.palette.primary.lightest,
-
+    color: "white",
+    backgroundColor: theme.palette.primary.lightest,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.light,
+    },
     minWidth: "fit-content"
   }
 });
 
-class QUTButton1 extends React.Component {
+class QUTButton2 extends React.Component {
   state = {
     value: 0
   };
@@ -49,7 +52,7 @@ class QUTButton1 extends React.Component {
     const { value } = this.state;
 
     return (
-      <Button className={classes.button} className={classes.button}>
+      <Button className={classes.button} variant="contained" onClick={() => console.log("hi")} >
         <ArrowForward className={classes.icon} />
         {children}
       </Button>
@@ -57,8 +60,8 @@ class QUTButton1 extends React.Component {
   }
 }
 
-QUTButton1.propTypes = {
+QUTButton2.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(QUTButton1);
+export default withStyles(styles)(QUTButton2);

@@ -4,6 +4,7 @@ const jwtDecode = require("jwt-decode");
 
 export default (type, params) => {
     if (type === AUTH_LOGIN) {
+        console.log("AUTH_LOGIN");
         const { username, password } = params;
         const request = new Request(SERVER_DOMAIN + '/api/login/', {
             method: 'POST',
@@ -18,36 +19,38 @@ export default (type, params) => {
                 return response.json();
             })
             .then(({ token }) => {
-                const decodedToken = jwtDecode(token);
-                console.log("jwtDecode")
-                console.log(decodedToken)
-
                 localStorage.setItem('token', token);
-                localStorage.setItem('userType', decodedToken.userType);
 
             });
     }
     if (type === AUTH_ERROR) {
+        console.log("AUTH_ERROR");
         const status = params.status;
         if (status === 401 || status === 403) {
             localStorage.removeItem('token');
-            localStorage.removeItem('userType');
             return Promise.reject();
         }
         return Promise.resolve();
     }
     if (type === AUTH_CHECK) {
-        return localStorage.getItem('token') ? Promise.resolve() : Promise.reject({ redirectTo: '/' });
+        console.log("AUTH_CHECK");
+
+        return localStorage.getItem('token') ? Promise.resolve() : Promise.reject({ redirectTo: '/home' });
     }
 
     if (type === AUTH_GET_PERMISSIONS) {
-        console.log("i am hereree");
-        const role = localStorage.getItem("userType");
-        return Promise.resolve(role);
+        console.log("AUTH_GET_PERMISSIONS");
+        if (localStorage.getItem("token") !== null) {
+            const role = jwtDecode(localStorage.getItem("token")).userType;
+            return Promise.resolve(role);
+        }
+        else {
+            Promise.reject({ redirectTo: '/home' })
+        }
     }
     if (type === AUTH_LOGOUT) {
+        console.log("AUTH_LOGOUT");
         localStorage.removeItem('token');
-        localStorage.removeItem("userType");
         return Promise.resolve();
     }
 

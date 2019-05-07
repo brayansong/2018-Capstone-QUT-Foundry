@@ -37,10 +37,10 @@ class Frame extends React.Component {
   };
 
   render() {
-    const { classes, children } = this.props;
+    const { classes, children, background } = this.props;
     const { value } = this.state;
 
-    return <div className={classes.root}>{children}</div>;
+    return <div className={classes.root} style={{ background: background }}>{children}</div>;
   }
 }
 

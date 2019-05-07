@@ -26,7 +26,7 @@ TabContainer.propTypes = {
 
 const styles = theme => ({
   root: {
-    padding: 10
+    //padding: 10
   },
   icon: {
     border: "1px solid"
@@ -35,6 +35,15 @@ const styles = theme => ({
     background: "black",
     height: 270,
     width: "100%"
+  },
+  button: {
+    color: theme.palette.primary.lightest,
+    borderColor: theme.palette.primary.lightest,
+    "&:hover": {
+      color: theme.palette.primary.light,
+      borderColor: theme.palette.primary.light,
+    },
+    minWidth: "fit-content"
   }
 });
 
@@ -48,41 +57,45 @@ class QutSection2 extends React.Component {
   };
 
   render() {
-    const { classes, children, content, title } = this.props;
+    const { classes, children, content, title, background } = this.props;
     const { value } = this.state;
 
     return (
-      <Frame>
+      <Frame background={background}>
         <Typography variant="h4" gutterBottom>
           {title}
         </Typography>
 
-        <Grid container className={classes.root} spacing={40}>
+        <Grid container className={classes.root} spacing={0}>
           <Grid item xs={4}>
             <QUTCard1
               date="10/2/2018"
-              title="dfdf"
-              contant="awefawefg"
-              image=""
+              title="Transdisiplinary"
+              contant="We tackle some of the biggest questions facing the planet by combining different disciplines and capabilities. Our transdisciplinary research approach is delivering unique solutions."
+              image="/images/Old-Government-House-1.jpg"
             />
           </Grid>
           <Grid item xs={4}>
             <QUTCard1
               date="10/4/2018"
-              title="wefwef"
-              contant="awefawefg"
-              image=""
+              title="Transdisiplinary"
+              contant="We tackle some of the biggest questions facing the planet by combining different disciplines and capabilities. Our transdisciplinary research approach is delivering unique solutions."
+              image="/images/Old-Government-House-1.jpg"
             />
           </Grid>
           <Grid item xs={4}>
             <QUTCard1
               date="10/6/2018"
-              title="rgrg"
-              contant="awefawefg"
-              image=""
+              title="Transdisiplinary"
+              contant="We tackle some of the biggest questions facing the planet by combining different disciplines and capabilities. Our transdisciplinary research approach is delivering unique solutions."
+              image="/images/Old-Government-House-1.jpg"
             />
           </Grid>
         </Grid>
+        <div className="w100 m-auto t-center mt-5">
+          <Button variant="outlined" size="large" color="primary" className={classes.button}>+ Show More</Button>
+        </div>
+
       </Frame>
     );
   }

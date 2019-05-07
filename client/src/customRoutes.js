@@ -8,6 +8,6 @@ import Home from './page/base/Home'
 export default [
     <Route exact path="/register-email" component={RegisterEmail} noLayout />,
     <Route exact path="/register" component={Register} noLayout />,
-    <Route path="/" component={Home} noLayout />,
+    <Route exact path="/home" component={Home} noLayout />,
     /*     <Route exact path="/no-access" noLayout />, */
 ];

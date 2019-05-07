@@ -8,34 +8,45 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import QUTButton1 from "./QUTButton1"
 
 const styles = {
   card: {
     maxWidth: 345
   },
   media: {
-    height: 140
+    backgroundPosition: "center",
+    height: 215
+  },
+  textMaxHeight: {
+    display: "block",
+    textOverflow: "ellipsis",
+    wordWrap: "break-word",
+    overflow: "hidden",
+    maxHeight: "4.5em",
+    lineHeight: "1.5em"
   }
 };
 
 function MediaCard(props) {
   const { classes, date, title, contant, image } = props;
   return (
-    <Card className={classes.card}>
+    <div className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={image}
           title="Contemplative Reptile"
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent style={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 0 }}>
+          <Typography variant="h5" >
             {title}
           </Typography>
-          <Typography component="p">{contant}</Typography>
+          <Typography component="p" className={classes.textMaxHeight}>{contant}</Typography>
+          <QUTButton1>See More</QUTButton1>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </div>
   );
 }
 
