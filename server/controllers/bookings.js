@@ -1,4 +1,12 @@
 const Booking = require("../models").Booking;
+const AvailableTime = require("../models").AvailableTime;
+const UserInfo = require("../models").UserInfo;
+const MentorProgram = require("../models").MentorProgram;
+
+
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
 
 module.exports = {
 
@@ -13,16 +21,26 @@ module.exports = {
     var sort = req.query._sort //!= undefined ? [ JSON.parse(req.query.sort)] : null ;
     var start = req.query._start
     var range = req.query.range //!= undefined ?  JSON.parse(req.query.range) : [0, 999999999999999999999999999999] ;
-    var filter = req.query.filter //!= undefined ? [ JSON.parse(req.query.filter)] : null ;
+    var filter = req.query.q != undefined ? req.query.q.split("").join('%') : '';
     return Booking.findAll({
 
       where: {
-        userId: req.user.id,
+        // attendantId: req.user.id,
       },
       order: [
         [sort, order]
       ],
-
+      include: [{
+        model: AvailableTime,
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }, {
+        model: UserInfo,
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }, {
+        model: MentorProgram,
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }],
+      attributes: { exclude: ['availableTimeID', 'attendantId', "mentorProgramId"] },
     })
       .then(books => {
 
@@ -42,11 +60,9 @@ module.exports = {
   create(req, res) {
     return Booking.create({
       availableTimeID: req.body.availableTimeID,
-      userId: req.user.userId,
-      room: req.user.room,
-      facultyId: req.user.facultyId,
-      title: req.user.title,
-      description: req.user.description
+      attendantId: req.user.id,
+      mentorProgramId: req.body.mentorProgramId,
+      location: req.body.location,
     })
       .then(books => res.status(201).send(books))
       .catch(error => res.status(400).send(error));
@@ -56,7 +72,18 @@ module.exports = {
     return Booking.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [{
+        model: AvailableTime,
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }, {
+        model: UserInfo,
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }, {
+        model: MentorProgram,
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }],
+      attributes: { exclude: ['availableTimeID', 'attendantId', "mentorProgramId"] },
     })
       .then(booking => {
         if (!booking) {
@@ -83,11 +110,9 @@ module.exports = {
         return booking
           .update({
             availableTimeID: req.body.availableTimeID,
-            userId: req.user.userId,
-            room: req.user.room,
-            facultyId: req.user.facultyId,
-            title: req.user.title,
-            description: req.user.description
+            attendantId: req.user.userId,
+            mentorProgramId: req.body.mentorProgramId,
+            location: req.body.location,
           })
           .then(books => res.status(201).send(books))
           .catch(error => res.status(400).send(error));

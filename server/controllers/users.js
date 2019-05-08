@@ -1,5 +1,9 @@
 const User = require("../models").User;
 const UserInfo = require("../models").UserInfo;
+const UserType = require("../models").UserType
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
 
 module.exports = {
   create(req, res) {
@@ -23,7 +27,7 @@ module.exports = {
     var sort = req.query._sort //!= undefined ? [ JSON.parse(req.query.sort)] : null ;
     var start = req.query._start
     var range = req.query.range //!= undefined ?  JSON.parse(req.query.range) : [0, 999999999999999999999999999999] ;
-    var filter = req.query.filter //!= undefined ? [ JSON.parse(req.query.filter)] : null ;
+    var filter = req.query.q != undefined ? req.query.q.split("").join('%') : '';
     return User.findAll({
 
       where: {
@@ -81,6 +85,13 @@ module.exports = {
           }
 
           var result = users.filter((user, key) => key >= start && key < end)
+          result = result.map(user => {
+            console.log("#############################")
+            console.log(user)
+            var userData = JSON.parse(JSON.stringify(user))
+            return { ...userData, ...userData.UserInfos[0] }
+          })
+          console.log(result)
           res.append('X-Total-Count', users.length);
 
           return res.status(200).send(result);
@@ -88,9 +99,11 @@ module.exports = {
         .catch(error => res.status(400).send(error));
     }
     else {
+      console.log("find this user ")
+      console.log(req.params.id)
       return User.findOne({
         where: {
-          id: req.query.id
+          id: 24
         },
         include: [{ model: UserInfo }]
       })
@@ -100,7 +113,12 @@ module.exports = {
               message: "There are no responding user"
             });
           }
-          return res.status(200).send([user]);
+
+          var userData = JSON.parse(JSON.stringify(user))
+
+          user = { ...userData/* , ...userData.UserInfos[0]  */ }
+          console.log(user)
+          return res.status(200).send(user);
         })
         .catch(error => res.status(400).send(error));
     }
@@ -108,7 +126,7 @@ module.exports = {
   personal(req, res) {
     return User.findOne({
       where: {
-        email: user.email
+        email: req.user.email
       },
     }).then(user => {
       UserInfo.findOne({
@@ -139,11 +157,24 @@ module.exports = {
   },
 
   update(req, res) {
-    return User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName
+    return User.findOne({
+      where: {
+        id: req.params.id
+      }
     })
-      .then(User => res.status(201).send(User))
+      .then(user => {
+        if (!user) {
+          return res.status(404).send({
+            message: "There are no responding user"
+          });
+        }
+        return user
+          .update({
+            active: req.body.active,
+          })
+          .then(users => res.status(201).send(users))
+          .catch(error => res.status(400).send(error));
+      })
       .catch(error => res.status(400).send(error));
   },
   destroy(req, res) {

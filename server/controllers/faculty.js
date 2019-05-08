@@ -1,4 +1,7 @@
 const Faculty = require("../models").Faculty;
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
 
 module.exports = {
 
@@ -13,7 +16,7 @@ module.exports = {
     var sort = req.query._sort //!= undefined ? [ JSON.parse(req.query.sort)] : null ;
     var start = req.query._start
     var range = req.query.range //!= undefined ?  JSON.parse(req.query.range) : [0, 999999999999999999999999999999] ;
-    var filter = req.query.filter //!= undefined ? [ JSON.parse(req.query.filter)] : null ;
+    var filter = req.query.q != undefined ? req.query.q.split("").join('%') : '';
     return Faculty.findAll({
 
       where: {

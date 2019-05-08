@@ -68,7 +68,7 @@ module.exports = {
                     gender: req.body.gender,
                     userId: user.id,
                     userType: roleType,
-
+                    qutId: user.qutId
                   })
                     .then(() => {
                       token.destroy()

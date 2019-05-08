@@ -25,6 +25,12 @@ module.exports = app => {
     .put(authenticationsController.permission(user = ['me', 'admin']), usersController.update)
     .delete(authenticationsController.permission(user = ['me', 'admin']), usersController.destroy)
 
+  app
+    .route("/api/users/:id")
+    .get(authenticationsController.permission(), usersController.retrieve)
+    .put(authenticationsController.permission(), usersController.update)
+
+
 
   app
     .route("/api/personal")

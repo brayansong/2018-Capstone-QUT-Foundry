@@ -30,7 +30,7 @@ const theme = createMuiTheme({
         fontWeightMedium: 600,
 
         body1: {
-            fontSize: 17,
+            // fontSize: 17,
             fontWeight: 500
         },
         subtitle1: {
@@ -111,6 +111,11 @@ const theme = createMuiTheme({
                 borderRadius: 0
             }
         },
+        MuiCardHeader: {
+            action: {
+                marginTop: 0
+            }
+        }
 
     }
 });

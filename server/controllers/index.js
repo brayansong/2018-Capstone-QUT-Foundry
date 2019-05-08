@@ -4,6 +4,7 @@ const bookings = require("./bookings");
 const availableTime = require("./availableTime");
 const expertise = require("./expertise");
 const faculty = require("./faculty");
+const mentorProgram = require("./mentorProgram");
 
 
 module.exports = {
@@ -13,4 +14,5 @@ module.exports = {
   availableTime,
   expertise,
   faculty,
+  mentorProgram
 };

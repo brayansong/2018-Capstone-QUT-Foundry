@@ -1,4 +1,7 @@
 const AvailableTime = require("../models").AvailableTime;
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
 
 module.exports = {
 
@@ -26,11 +29,16 @@ module.exports = {
     var sort = req.query._sort //!= undefined ? [ JSON.parse(req.query.sort)] : null ;
     var start = req.query._start
     var range = req.query.range //!= undefined ?  JSON.parse(req.query.range) : [0, 999999999999999999999999999999] ;
-    var filter = req.query.filter //!= undefined ? [ JSON.parse(req.query.filter)] : null ;
+    var filter = req.query.q != undefined ? req.query.q.split("").join('%') : '';
+    var userId = req.query.include === undefined ? [req.user.id] : [0, 999999999999999999999999999999]
+
     return AvailableTime.findAll({
 
       where: {
-        userId: req.user.id,
+        userId: {
+          [Op.between]: userId,
+        },
+
       },
       order: [
         [sort, order]
@@ -44,6 +52,9 @@ module.exports = {
           return res.status(404).send({
             message: "There are no availableTime"
           });
+        }
+        if (req.query.include !== "all") {
+          availableTimes = availableTimes.filter((availableTime, key) => req.query.include.includes(availableTime.userId))
         }
         var result = availableTimes.filter((exercise, key) => key >= start && key < end)
         res.append('X-Total-Count', availableTimes.length);

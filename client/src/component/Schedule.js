@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
+import axios from "axios";
+import SERVER_DOMAIN from "../constants/server";
 import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
 import {
     Scheduler,
@@ -84,27 +86,64 @@ export default class Demo extends React.PureComponent {
             data: []
         };
     }
+    componentDidMount() {
+        axios.get(SERVER_DOMAIN + "/api/bookings?_end=1000&_order=DESC&_sort=id&_start=0", { headers: { Authorization: "Bearer " + localStorage.getItem("token") } })
+            .then(response => {
+                response.data = response.data.map(item => {
 
-    commitChanges({ added, changed, deleted }) {
-        console.log("this.state")
-        console.log(this.state)
+                    return {
+                        title: item.MentorProgram.programName,
+                        startDate: item.AvailableTime.startDate,
+                        endDate: item.AvailableTime.endDate,
+                        mentorId: item.UserInfo.id,
+                        mentorName: item.UserInfo.firstName + " " + item.UserInfo.lastName,
+                        bookingId: item.id
+                    }
+                })
+                this.setState({
+                    data: response.data
+                }, () => {
+                    this.setState({ isLoading: false })
+                    console.log(this.state.data)
+                })
+            })
+            ;
+
+   
+    }
+    deleteAvailableTime = (credentials) => {
         let { data } = this.state;
-        if (added) {
-            const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-            data = [
-                ...data,
-                {
-                    id: startingAddedId,
-                    ...added,
-                },
-            ];
+        data = data.filter(appointment => appointment.id !== credentials);
+        console.log(credentials)
+        console.log(data)
+      /*   axios.delete(SERVER_DOMAIN + "/api/bookings/" + credentials, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } })
+            .then(response => {
+                console.log("Add time success")
+                console.log(response.data)
+                this.setState({
+                    data: data
+                });
+            })
+            .catch(err => {
+                alert(err)
+            }); */
+    }
+    commitChanges({ added, changed, deleted }) {
+        console.log("fuck ethan")
+        console.log(added)
+        console.log(changed)
+        console.log(deleted)
+        let { data } = this.state;
+/*         if (added) {
+
+            this.addAvailableTime(added)
         }
         if (changed) {
-            data = data.map(appointment => (
-                changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
-        }
+            this.changeAvailableTime(changed)
+        } */
         if (deleted) {
-            data = data.filter(appointment => appointment.id !== deleted);
+            this.deleteAvailableTime(deleted)
+
         }
         this.setState({ data });
     }
@@ -114,7 +153,8 @@ export default class Demo extends React.PureComponent {
         const { data } = this.state;
         const { defaultView } = this.props
         console.log("new Date(2019, 4, 17, 9, 30)")
-        console.log(new Date(2019, 4, 17, 9, 30))
+
+     
         return (
             <Scheduler
                 height={600}

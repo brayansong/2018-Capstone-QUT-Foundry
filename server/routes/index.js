@@ -12,5 +12,6 @@ module.exports = app => {
   require("./availableTime")(app);
   require("./booking")(app);
   require("./faculty")(app);
+  require("./mentorProgram")(app);
 
 };
