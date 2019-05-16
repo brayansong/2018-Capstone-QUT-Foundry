@@ -13,6 +13,7 @@ import theme from "../component/theme";
 import SERVER_DOMAIN from "../constants/server";
 import axios from 'axios';
 import QUTCard2 from '../component/QUTCard2';
+import QUTCard3 from '../component/QUTCard3';
 const queryString = require('query-string');
 const jwtDecode = require("jwt-decode");
 
@@ -57,7 +58,7 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: jwtDecode(localStorage.getItem("token")),
+            userInfo: {},
             data: "wrhiaewrfauiwef",
             expertise: [],
             faculty: [],
@@ -145,6 +146,14 @@ class Dashboard extends Component {
                 function () { }
             );
         });
+        this.setState({
+            userInfo: jwtDecode(localStorage.getItem("token"))
+        }, () => {
+
+            this.setState({
+                userInfo: { ...this.state.userInfo, dob: this.state.userInfo.dob.split("T")[0] }
+            })
+        })
     }
 
 
@@ -157,7 +166,7 @@ class Dashboard extends Component {
 
                     <div >
                         <Typography variant="h6" gutterBottom>
-                            {userInfo.firstName + ", " + userInfo.lastName + " (" + userInfo.qutId + ")"}
+                            {userInfo.userType}  {userInfo.firstName + ", " + userInfo.lastName + " (" + userInfo.qutId + ")"}
                         </Typography>
                         <Typography variant="body1" gutterBottom>
                             Your information is managed by CAPSTONE TEAM JEEB.
@@ -197,11 +206,10 @@ class Dashboard extends Component {
                                 />
                             </Grid>
                             <Grid item xs={6}>
-                                <QUTCard2
+                                <QUTCard3
                                     title="Personal Information"
                                     Edit
-                                    data={personalInfo}
-                                    onlyObject=""
+                                    onlyObject={userInfo}
                                 />
                             </Grid>
 

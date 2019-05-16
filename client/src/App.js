@@ -10,6 +10,7 @@ import Dashboard from './page/Dashboard';
 import Personal from './page/Personal';
 
 import { BookingList, BookingEdit, /* BookingCreate */ } from './page/Booking'
+import { RoomrequestList } from './page/roomBooking'
 import BookingCreate from './page/BookingCreate'
 import { FacultyEdit, FacultyCreate } from './page/Faculties'
 import { UserList, UserEdit, UserShow } from "./page/Users"
@@ -37,15 +38,18 @@ const App = () => (
     customRoutes={customRoutes}
     authProvider={authProvider}
     theme={theme}
-    dashboard={Dashboard}
+
   >
 
 
     {permissions => [
-
+      permissions === 'Admin' || permissions === 'Mentor' || permissions === 'Entrepreneur'
+        ? <Resource name="personal" list={Personal} />
+        : null,
       permissions === 'Mentor'
         ? <Resource name="mentorPrograms" list={MentorprogramList} show={MentorprogramShow} edit={MentorprogramEdit} create={MentorprogramCreate} />
         : null,
+
       permissions === 'Mentor' || permissions === 'Entrepreneur'
         ? <Resource name="bookings" list={BookingList} show={ShowGuesser} edit={BookingEdit} create={BookingCreate} />
         : null,
@@ -61,10 +65,11 @@ const App = () => (
       permissions === 'Admin'
         ? <Resource name="users" list={UserList} show={UserShow} edit={UserEdit} />
         : null,
-      /*  <Resource name="users" list={ListGuesser} />, */
-      permissions === 'Admin' || permissions === 'Mentor' || permissions === 'Entrepreneur'
-        ? <Resource name="personal" list={Personal} />
+      permissions === 'Admin'
+        ? <Resource name="roomRequest" list={RoomrequestList} show={ShowGuesser} edit={EditGuesser} />
         : null,
+      /*  <Resource name="users" list={ListGuesser} />, */
+
 
       <Resource name="login" />
     ]}

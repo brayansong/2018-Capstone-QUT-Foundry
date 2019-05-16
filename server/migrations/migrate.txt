@@ -9,3 +9,4 @@ sequelize model:create --name MentorProgram --attributes ProgramName:string,ment
 
 
 sequelize model:create --name Booking --attributes availableTimeID:integer,attendantId:integer,mentorProgramId:integer,location:string,
+sequelize model:create --name RoomRequest --attributes mentorBookingId:integer,

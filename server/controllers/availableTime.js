@@ -1,4 +1,5 @@
 const AvailableTime = require("../models").AvailableTime;
+const Booking = require("../models").Booking;
 const Sequelize = require("sequelize");
 
 const Op = Sequelize.Op;
@@ -16,6 +17,7 @@ module.exports = {
 
         where: {
           userId: req.user.id,
+          /* startDate: */
         },
         order: [
         ],
@@ -38,7 +40,9 @@ module.exports = {
         userId: {
           [Op.between]: userId,
         },
-
+        startDate: {
+          [Op.gte]: new Date()
+        }
       },
       order: [
         [sort, order]
@@ -56,10 +60,28 @@ module.exports = {
         if (req.query.include !== "all") {
           availableTimes = availableTimes.filter((availableTime, key) => req.query.include.includes(availableTime.userId))
         }
-        var result = availableTimes.filter((exercise, key) => key >= start && key < end)
-        res.append('X-Total-Count', availableTimes.length);
 
-        return res.status(200).send(result);
+        var availableTimeList = availableTimes.map(availableTime => {
+          availableTime.id
+        })
+        Booking.findAll({
+          where: {
+            availableTimeID: {
+              [Op.in]: availableTimeList
+            }
+          }
+        })
+          .then(booking => {
+            console.log("booking")
+            console.log(booking)
+
+
+            res.append('X-Total-Count', availableTimes.length);
+
+            return res.status(200).send(availableTimes);
+          })
+
+
       })
       .catch(error => res.status(400).send(error));
   },

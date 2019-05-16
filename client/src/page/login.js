@@ -99,7 +99,7 @@ class MyLoginPage extends Component {
         this.setState(data);
     }
 
-    handleSnackClose = () => {
+    handleSnackClose = () => { //It is calling an alert for this 
         this.setState({ snack: false });
     };
 

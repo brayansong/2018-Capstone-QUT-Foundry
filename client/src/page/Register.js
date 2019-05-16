@@ -235,7 +235,7 @@ class RegisterForm extends Component {
                 className={classes.submit}
               >
                 Register
-          </Button>
+              </Button>
             </form>
           </Paper>
         </main>

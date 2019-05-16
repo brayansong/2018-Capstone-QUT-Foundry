@@ -19,18 +19,35 @@ module.exports = {
     var start = req.query._start
     var range = req.query.range //!= undefined ?  JSON.parse(req.query.range) : [0, 999999999999999999999999999999] ;
     var filter = req.query.q != undefined ? req.query.q.split("").join('%') : '';
-    var userId = req.query.self !== undefined ? [req.user.id] : [0, 999999999999999999999999999999];
+
+
+    var where = {}
+    where = {
+      programName: {
+        [Op.iLike]: '%' + filter + '%'
+        //[Op.iLike]: { [Op.any]: ['%' + filter + '%', '%' + filter1 + '%'] }
+      }
+    }
+    if (req.query.self !== undefined) {
+      console.log("yes")
+
+      where = {
+        ...where,
+        mentorId: {
+          [Op.between]: [0, 999999999999999999999999999999],
+        },
+      }
+    }
+    else {
+      console.log("no")
+      where = {
+        ...where,
+        mentorId: req.user.id,
+      }
+    }
     return MentorProgram.findAll({
 
-      where: {
-        mentorId: {
-          [Op.between]: userId,
-        },
-        programName: {
-          [Op.iLike]: '%' + filter + '%'
-          //[Op.iLike]: { [Op.any]: ['%' + filter + '%', '%' + filter1 + '%'] }
-        }
-      },
+      where: where,
       include: [{
         model: UserInfo,
         attributes: { exclude: ['createdAt', 'updatedAt'] },
@@ -59,7 +76,7 @@ module.exports = {
   create(req, res) {
     return MentorProgram.create({
       programName: req.body.programName,
-      mentorId: req.body.mentorId,
+      mentorId: req.user.id,
       description: req.body.description,
       category: req.body.category,
     })

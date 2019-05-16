@@ -17,10 +17,12 @@ const Description = ({ record = {}, source }) =>
 export const MentorprogramList = props => (
     <List {...props}>
         <Datagrid >
-            <DateField source="createdAt" />
+
             <TextField source="programName" />
             <FullName source="UserInfo" label="Mentor Name" />
+            <TextField source="category" />
             <Description source="description" />
+
             <EditButton />
         </Datagrid>
     </List>
@@ -32,7 +34,7 @@ export const MentorprogramCreate = props => (
             <TextInput source="programName" />
             <LongTextInput source="description" />
             <TextInput source="category" />
- 
+
         </SimpleForm>
     </Create>
 );
