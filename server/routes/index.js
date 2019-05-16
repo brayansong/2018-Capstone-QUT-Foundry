@@ -14,4 +14,5 @@ module.exports = app => {
   require("./faculty")(app);
   require("./mentorProgram")(app);
 
+  require("./roomRequest")(app);
 };

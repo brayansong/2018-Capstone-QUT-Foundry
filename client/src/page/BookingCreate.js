@@ -90,7 +90,7 @@ class Dashboard extends Component {
     formatDateLabel = (e, f) => {
 
 
-        return "from: " + formatDate(e) + " to:" + formatDate(f)
+        return "from: " + formatDate(e) + " to" + formatDate(f)
     }
     getTimeSlot = (e) => {
         console.log(e)
@@ -123,7 +123,7 @@ class Dashboard extends Component {
     getmentorPrograms = () => {
         return axios({
             method: "get",
-            url: SERVER_DOMAIN + "/api/mentorPrograms?_end=10&_order=DESC&_sort=id&_start=0&q=",
+            url: SERVER_DOMAIN + "/api/mentorPrograms?_end=10&_order=DESC&_sort=id&_start=0&self=false&q=",
             headers: {
                 "Content-Type": "text/plain",
                 Authorization: "Bearer " + localStorage.getItem("token")
@@ -159,7 +159,7 @@ class Dashboard extends Component {
     getMentor = (e) => {
         return axios({
             method: "get",
-            url: SERVER_DOMAIN + "/api/mentorPrograms?_end=10&_order=DESC&_sort=id&_start=0&q=" + e.label,
+            url: SERVER_DOMAIN + "/api/mentorPrograms?_end=10&_order=DESC&_sort=id&_start=0&self=false&q=" + e.label,
             headers: {
                 "Content-Type": "text/plain",
                 Authorization: "Bearer " + localStorage.getItem("token")

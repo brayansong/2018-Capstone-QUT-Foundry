@@ -17,15 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from "axios";
 import SERVER_DOMAIN from "../constants/server";
 import { fade } from '@material-ui/core/styles/colorManipulator';
-const appointments = [
-    {
-        title: "Website Re-Design Plan",
-        startDate: '2019-04-17 10:00',// new Date(2019, 4, 17, 9, 30),
-        endDate: '2019-04-17 12:00',// new Date(2019, 4, 17, 11, 30),
-        id: 0,
-        location: "Room 1"
-    },
-];
+
 
 const style = theme => ({
     todayCell: {
@@ -49,7 +41,7 @@ const style = theme => ({
     today: {
         backgroundColor: fade(theme.palette.primary.main, 0.16),
         '& span': {
-            display: 'none'
+            //  display: 'none'
         },
         '& p': {
             fontSize: 20
@@ -59,7 +51,7 @@ const style = theme => ({
     weekend: {
         backgroundColor: fade(theme.palette.action.disabledBackground, 0.06),
         '& span': {
-            display: 'none',
+            //  display: 'none',
             color: 'black'
         },
         '& p': {
@@ -70,7 +62,7 @@ const style = theme => ({
     weekday: {
         backgroundColor: fade(theme.palette.action.disabledBackground, 0.06),
         '& span': {
-            display: 'none'
+            //  display: 'none'
         },
         '& p': {
             fontSize: 20,
@@ -207,16 +199,22 @@ export default class Demo extends React.PureComponent {
                     onCommitChanges={this.commitChanges}
                 />
 
+                <DayView
+                    startDayHour={9}
+                    endDayHour={18}
+                />
                 <WeekView
                     startDayHour={9}
                     endDayHour={19}
                     timeTableCellComponent={TimeTableCell}
                     dayScaleCellComponent={DayScaleCell}
                 />
-
-
+                <MonthView
+                />
+                <Toolbar />
+                <ViewSwitcher />
                 <Appointments />
-
+                <DateNavigator />
                 <AppointmentTooltip
                     showOpenButton
                     showDeleteButton

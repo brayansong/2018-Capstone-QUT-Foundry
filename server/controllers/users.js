@@ -86,10 +86,13 @@ module.exports = {
 
           var result = users.filter((user, key) => key >= start && key < end)
           result = result.map(user => {
-            console.log("#############################")
-            console.log(user)
+          /*   console.log("#############################")
+            console.log(user) */
             var userData = JSON.parse(JSON.stringify(user))
-            return { ...userData, ...userData.UserInfos[0] }
+            var userIndo = userData.UserInfos[0]
+            console.log("###############################################################")
+            console.log({UserInfo:userIndo})
+            return { ...userData ,UserInfo:userIndo}
           })
           console.log(result)
           res.append('X-Total-Count', users.length);
@@ -103,7 +106,7 @@ module.exports = {
       console.log(req.params.id)
       return User.findOne({
         where: {
-          id: 24
+          id: req.params.id
         },
         include: [{ model: UserInfo }]
       })
