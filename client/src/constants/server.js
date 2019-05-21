@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 const SERVER_URL = process.env.NODE_ENV === "production" ?
-    "http://www.jeffreylaudev.tk:3000" :
-    "http://localhost:3000"
+    "https://www.jeffreylaudev.tk:3000" :
+    "https://localhost:3000"
 
 export default SERVER_URL;
 
