@@ -1,9 +1,17 @@
 // Server setup here
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const app = require('../app'); // The express app we just created
 
+var privateKey = fs.readFileSync('server/ssl/jeffreylaudev.tk.key', 'utf8');
+var certificate = fs.readFileSync('server/ssl/jeffreylaudev.tk.crt', 'utf8');
+
+var credentials = { key: privateKey, cert: certificate };
 const port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);
 
 const server = http.createServer(app);
-server.listen(port);
+const httpsServer = https.createServer(credentials, app);
+// server.listen(port);
+httpsServer.listen(port);
