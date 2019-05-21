@@ -39,7 +39,7 @@ class LoginHeader extends Component {
             <MuiThemeProvider theme={this.props.theme}>
                 <div className={classes.navBar}>
                     <div id="real-world"></div>
-                    <a id="qut-logo" href="https://www.qut.edu.au" title="Link to QUT home page">QUT home page</a>
+                    <a id="qut-logo" href="/#/home" title="Link to QUT home page">QUT home page</a>
                 </div>
             </MuiThemeProvider>
         );

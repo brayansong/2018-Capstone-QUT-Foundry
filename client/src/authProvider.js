@@ -45,6 +45,7 @@ export default (type, params) => {
             return Promise.resolve(role);
         }
         else {
+
             Promise.reject({ redirectTo: '/home' })
         }
     }

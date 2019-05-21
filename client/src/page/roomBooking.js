@@ -11,12 +11,16 @@ import BookingRoom from "../component/BookingRoom"
 import AssignRoomButton from "../component/AssignRoomButton"
 const TimeFromToField = ({ record = {}, source }) => {
 
-    if (record["Booking"] !== undefined)
-        return (<div>
-            {/*         {Date(record[source].startDate)} */}
-            {new Date(record["Booking"][source].startDate).getHours()}:{new Date(record["Booking"][source].startDate).getMinutes()} - {new Date(record["Booking"][source].endDate).getHours()}{new Date(record["Booking"][source].startDate).getMinutes()}
+    console.log(record)
 
-        </div>)
+
+    if (record["Booking"] !== undefined || record["Booking"] !== null)
+        if (record["Booking"]["AvailableTime"] !== undefined || record["Booking"]["AvailableTime"] !== null)
+            return (<div>
+                {/*         {Date(record[source].startDate)} */}
+                {new Date(record["Booking"][source].startDate).getHours()}:{new Date(record["Booking"][source].startDate).getMinutes()} - {new Date(record["Booking"][source].endDate).getHours()}{new Date(record["Booking"][source].startDate).getMinutes()}
+
+            </div>)
 
     return (
         <div>

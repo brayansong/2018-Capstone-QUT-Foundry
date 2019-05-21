@@ -132,6 +132,9 @@ class MyLoginPage extends Component {
         this.props.history.push("")
 
     }
+    componentDidMount() {
+        console.log("this is login page")
+    }
     render() {
         const { classes } = this.props;
 
