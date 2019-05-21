@@ -9,16 +9,7 @@ let should = chai.should();
 //Apply http request to cahi
 chai.use(chaiHttp);
 
-
-//Example Login test case sets
-describe('Login', () => {
-    //Example of testing Login with correct user detail
-    it('correct user detail', (done) => {
-        let body = {
-            username: "n10050258@qut.edu.au",
-            password: "abcd1234",
-        }
-        // request POST /api/login/ with body valurable
+ // request POST /api/login/ with body valurable
         // username: "n10050256@qut.edu.au",
         // password: "qwefqwerfqwef",
         // Detail documentation of API is in the link below
@@ -29,6 +20,16 @@ describe('Login', () => {
         //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im4xMDA1MDI1NkBxdXQuZWR1LmF1IiwiaWF0IjoxNTUzMTM5NzY0LCJleHAiOjE1ODQ2NzU3NjR9.1tEAOMg2pkq6i7Mporsx5myoxo1AYJguNsri_4uzz0s",
         //     "message": "n10050256@qut.edu.au login successful"
         // }
+
+
+//Example Login test case sets
+describe('Login', () => {
+    //Example of testing Login with correct user detail
+    it('correct user detail', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "abcd1234",
+        }
         chai.request(server)
             .post('/api/login/')
             .send(body)
@@ -99,6 +100,217 @@ describe('Login', () => {
                 done();
             });
     });
+    it('incEmailTypeLogin', (done) => {
+        let body = {
+            username: "n10050256@gmail.com",
+            password: "abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incEmailSimbolLogin', (done) => {
+        let body = {
+            username: "n10050256#qut.edu.au",
+            password: "abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    
+    it('lessEmailLogin', (done) => {
+        let body = {
+            username: "10050256@qut.edu.au",
+            password: "abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incEmailLoginFSpace', (done) => {
+        let body = {
+            username: " n10050256@qut.edu.au",
+            password: "abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incEmailLoginRSpace', (done) => {
+        let body = {
+            username: "mentorTests@qut.edu.au ",
+            password: "abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incPasswordLogin', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "abcd12345",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incPasswordLoginFSpace', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: " abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incPasswordLoginRSpace', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "abcd1234 ",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incPasswordLoginSimbol', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "abcd123#",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('lessPasswordLogin', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "bcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('lessIncSimbolPasswordLogin', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "bcd123#",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incCapEmailLogin', (done) => {
+        let body = {
+            username: "N10050256@qut.edu.au",
+            password: "abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('should be the QUT email');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+    it('incCapPasswordLogin', (done) => {
+        let body = {
+            username: "n10050256@qut.edu.au",
+            password: "Abcd1234",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(401); // acceptance criteria
+                //res.body.should.have.property('message').eql('Wrong Password');
+                console.log("If I want to see the console, I will do like this")
+                console.log(res.body)
+                done();
+            });
+    });
+
+    ////////
     it('MincEmailTypeLogin', (done) => {
         let body = {
             username: "mentorTest@gmail.com",
@@ -182,7 +394,7 @@ describe('Login', () => {
     });
     it('MincPasswordLogin', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: "password",
         }
         chai.request(server)
@@ -198,7 +410,7 @@ describe('Login', () => {
     });
     it('MincPasswordLoginFSpace', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: " password123",
         }
         chai.request(server)
@@ -214,7 +426,7 @@ describe('Login', () => {
     });
     it('MincPasswordLoginRSpace', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: "password123 ",
         }
         chai.request(server)
@@ -230,7 +442,7 @@ describe('Login', () => {
     });
     it('MincPasswordLoginSimbol', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: "password12#",
         }
         chai.request(server)
@@ -246,7 +458,7 @@ describe('Login', () => {
     });
     it('MlessPasswordLogin', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: "assword123",
         }
         chai.request(server)
@@ -262,7 +474,7 @@ describe('Login', () => {
     });
     it('MlessIncSimbolPasswordLogin', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: "assword12#",
         }
         chai.request(server)
@@ -278,7 +490,7 @@ describe('Login', () => {
     });
     it('MincCapEmailLogin', (done) => {
         let body = {
-            username: "MentorTest@gmail.com",
+            username: "MentorTest@qut.edu.au",
             password: "password123",
         }
         chai.request(server)
@@ -294,7 +506,7 @@ describe('Login', () => {
     });
     it('MincCapPasswordLogin', (done) => {
         let body = {
-            username: "mentorTest@gmail.com",
+            username: "mentorTest@qut.edu.au",
             password: "Password123",
         }
         chai.request(server)
@@ -391,7 +603,7 @@ describe('Login', () => {
     });
     it('EntincPasswordLogin', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: "password",
         }
         chai.request(server)
@@ -407,7 +619,7 @@ describe('Login', () => {
     });
     it('EntincPasswordLoginFSpace', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: " password123",
         }
         chai.request(server)
@@ -423,7 +635,7 @@ describe('Login', () => {
     });
     it('EntincPasswordLoginRSpace', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: "password123 ",
         }
         chai.request(server)
@@ -439,7 +651,7 @@ describe('Login', () => {
     });
     it('EntincPasswordLoginSimbol', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: "password12#",
         }
         chai.request(server)
@@ -455,7 +667,7 @@ describe('Login', () => {
     });
     it('EntlessPasswordLogin', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: "assword123",
         }
         chai.request(server)
@@ -471,7 +683,7 @@ describe('Login', () => {
     });
     it('EntlessIncSimbolPasswordLogin', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: "assword12#",
         }
         chai.request(server)
@@ -487,7 +699,7 @@ describe('Login', () => {
     });
     it('EntincCapEmailLogin', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "EnterTest@qut.edu.au",
             password: "password123",
         }
         chai.request(server)
@@ -503,7 +715,7 @@ describe('Login', () => {
     });
     it('EntincCapPasswordLogin', (done) => {
         let body = {
-            username: "enterTest@gmail.com",
+            username: "enterTest@qut.edu.au",
             password: "Password123",
         }
         chai.request(server)
@@ -517,6 +729,222 @@ describe('Login', () => {
                 done();
             });
     });
+
+    var i;
+    //var result = 'lessPasswordLogin';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (i = 0; i < 15; i++) { 
+        //(characters.charAt(Math.floor(Math.random() * charactersLength))+result
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailTypeLogin', (done) => {
+            let body = {
+                username: "adminTest@gmail.com",
+                password: "password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailSimbolLogin', (done) => {
+            let body = {
+                username: "adminTest#qut.edu.au",
+                password: "password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'lessEmailLogin', (done) => {
+            let body = {
+                username: "dminTest@qut.edu.au",
+                password: "password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailLoginFSpace', (done) => {
+            let body = {
+                username: " adminTest@qut.edu.au",
+                password: "password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailLoginRSpace', (done) => {
+            let body = {
+                username: "adminTests@qut.edu.au ",
+                password: "password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLogin', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: "password",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLoginFSpace', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: " password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLoginRSpace', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: "password123 ",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLoginSimbol', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: "password12#",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'lessPasswordLogin', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: "assword123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'lessIncSimbolPasswordLogin', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: "assword12#",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incCapEmailLogin', (done) => {
+            let body = {
+                username: "AdminTest@qut.edu.au",
+                password: "password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('should be the QUT email');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incCapPasswordLogin', (done) => {
+            let body = {
+                username: "adminTest@qut.edu.au",
+                password: "Password123",
+            }
+            chai.request(server)
+                .post('/api/login/')
+                .send(body)
+                .end((err, res) => { //err stands for Error, res stands for response
+                    res.should.have.status(401); // acceptance criteria
+                    //res.body.should.have.property('message').eql('Wrong Password');
+                    console.log("If I want to see the console, I will do like this")
+                    console.log(res.body)
+                    done();
+                });
+        });
+    }
 
     it('AdincEmailTypeLogin', (done) => {
         let body = {
@@ -600,7 +1028,7 @@ describe('Login', () => {
     });
     it('AdincPasswordLogin', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: "password",
         }
         chai.request(server)
@@ -616,7 +1044,7 @@ describe('Login', () => {
     });
     it('AdincPasswordLoginFSpace', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: " password123",
         }
         chai.request(server)
@@ -632,7 +1060,7 @@ describe('Login', () => {
     });
     it('AdincPasswordLoginRSpace', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: "password123 ",
         }
         chai.request(server)
@@ -648,7 +1076,7 @@ describe('Login', () => {
     });
     it('AdincPasswordLoginSimbol', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: "password12#",
         }
         chai.request(server)
@@ -664,7 +1092,7 @@ describe('Login', () => {
     });
     it('AdlessPasswordLogin', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: "assword123",
         }
         chai.request(server)
@@ -680,7 +1108,7 @@ describe('Login', () => {
     });
     it('AdlessIncSimbolPasswordLogin', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: "assword12#",
         }
         chai.request(server)
@@ -696,7 +1124,7 @@ describe('Login', () => {
     });
     it('AdincCapEmailLogin', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "AdminTest@qut.edu.au",
             password: "password123",
         }
         chai.request(server)
@@ -712,7 +1140,7 @@ describe('Login', () => {
     });
     it('AdincCapPasswordLogin', (done) => {
         let body = {
-            username: "adminTest@gmail.com",
+            username: "adminTest@qut.edu.au",
             password: "Password123",
         }
         chai.request(server)
