@@ -9,17 +9,17 @@ let should = chai.should();
 //Apply http request to cahi
 chai.use(chaiHttp);
 
- // request POST /api/login/ with body valurable
-        // username: "n10050256@qut.edu.au",
-        // password: "qwefqwerfqwef",
-        // Detail documentation of API is in the link below
-        // https://documenter.getpostman.com/view/2992957/S11Huz7y#8c0ccf67-d079-4433-94d9-cbb9d780e62c
-        // This is the expected response  
-        //{
-        //     "auth": true,
-        //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im4xMDA1MDI1NkBxdXQuZWR1LmF1IiwiaWF0IjoxNTUzMTM5NzY0LCJleHAiOjE1ODQ2NzU3NjR9.1tEAOMg2pkq6i7Mporsx5myoxo1AYJguNsri_4uzz0s",
-        //     "message": "n10050256@qut.edu.au login successful"
-        // }
+// request POST /api/login/ with body valurable
+// username: "n10050256@qut.edu.au",
+// password: "qwefqwerfqwef",
+// Detail documentation of API is in the link below
+// https://documenter.getpostman.com/view/2992957/S11Huz7y#8c0ccf67-d079-4433-94d9-cbb9d780e62c
+// This is the expected response  
+//{
+//     "auth": true,
+//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im4xMDA1MDI1NkBxdXQuZWR1LmF1IiwiaWF0IjoxNTUzMTM5NzY0LCJleHAiOjE1ODQ2NzU3NjR9.1tEAOMg2pkq6i7Mporsx5myoxo1AYJguNsri_4uzz0s",
+//     "message": "n10050256@qut.edu.au login successful"
+// }
 
 
 //Example Login test case sets
@@ -41,18 +41,18 @@ describe('Login', () => {
     });
 
     it('MentorLoginTest', (done) => {
-    let body = {
-        username: "mentorTest@qut.edu.au",
-        password: "password123",
-    }
-    chai.request(server)
-        .post('/api/login/')
-        .send(body)
-        .end((err, res) => { //err stands for Error, res stands for response
-            res.should.have.status(200); // acceptance criteria
-            res.body.should.have.property('auth').eql(true);  // acceptance criteria
-            done();
-        });
+        let body = {
+            username: "mentorTest@qut.edu.au",
+            password: "password123",
+        }
+        chai.request(server)
+            .post('/api/login/')
+            .send(body)
+            .end((err, res) => { //err stands for Error, res stands for response
+                res.should.have.status(200); // acceptance criteria
+                res.body.should.have.property('auth').eql(true);  // acceptance criteria
+                done();
+            });
     });
     it('enterPrenuesLoginTest', (done) => {
         let body = {
@@ -94,7 +94,7 @@ describe('Login', () => {
             .send(body)
             .end((err, res) => { //err stands for Error, res stands for response
                 res.should.have.status(401); // acceptance criteria
-               // res.body.should.have.property('message').eql('passwords do not match');
+                // res.body.should.have.property('message').eql('passwords do not match');
                 console.log("If I want to see the console, I will do like this")
                 console.log(res.body)
                 done();
@@ -132,7 +132,7 @@ describe('Login', () => {
                 done();
             });
     });
-    
+
     it('lessEmailLogin', (done) => {
         let body = {
             username: "10050256@qut.edu.au",
@@ -343,7 +343,7 @@ describe('Login', () => {
                 done();
             });
     });
-    
+
     it('MlessEmailLogin', (done) => {
         let body = {
             username: "entorTest@qut.edu.au",
@@ -734,9 +734,9 @@ describe('Login', () => {
     //var result = 'lessPasswordLogin';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for (i = 0; i < 15; i++) { 
+    for (i = 0; i < 15; i++) {
         //(characters.charAt(Math.floor(Math.random() * charactersLength))+result
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailTypeLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incEmailTypeLogin', (done) => {
             let body = {
                 username: "adminTest@gmail.com",
                 password: "password123",
@@ -752,7 +752,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailSimbolLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incEmailSimbolLogin', (done) => {
             let body = {
                 username: "adminTest#qut.edu.au",
                 password: "password123",
@@ -768,7 +768,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'lessEmailLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'lessEmailLogin', (done) => {
             let body = {
                 username: "dminTest@qut.edu.au",
                 password: "password123",
@@ -784,7 +784,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailLoginFSpace', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incEmailLoginFSpace', (done) => {
             let body = {
                 username: " adminTest@qut.edu.au",
                 password: "password123",
@@ -800,7 +800,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incEmailLoginRSpace', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incEmailLoginRSpace', (done) => {
             let body = {
                 username: "adminTests@qut.edu.au ",
                 password: "password123",
@@ -816,7 +816,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incPasswordLogin', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: "password",
@@ -832,7 +832,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLoginFSpace', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incPasswordLoginFSpace', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: " password123",
@@ -848,7 +848,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLoginRSpace', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incPasswordLoginRSpace', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: "password123 ",
@@ -864,7 +864,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incPasswordLoginSimbol', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incPasswordLoginSimbol', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: "password12#",
@@ -880,7 +880,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'lessPasswordLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'lessPasswordLogin', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: "assword123",
@@ -896,7 +896,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'lessIncSimbolPasswordLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'lessIncSimbolPasswordLogin', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: "assword12#",
@@ -912,7 +912,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incCapEmailLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incCapEmailLogin', (done) => {
             let body = {
                 username: "AdminTest@qut.edu.au",
                 password: "password123",
@@ -928,7 +928,7 @@ describe('Login', () => {
                     done();
                 });
         });
-        it(characters.charAt(Math.floor(Math.random() * charactersLength))+'incCapPasswordLogin', (done) => {
+        it(characters.charAt(Math.floor(Math.random() * charactersLength)) + 'incCapPasswordLogin', (done) => {
             let body = {
                 username: "adminTest@qut.edu.au",
                 password: "Password123",
@@ -1169,16 +1169,16 @@ describe('Login', () => {
                 res.body.should.have.property('message').eql('Token not exist');
                 done();
             });
-        });
+    });
 });
 
-    //----------------------------------------------------------------------------//
-    //----------------------------- Invitation Test ------------------------------//
+//----------------------------------------------------------------------------//
+//----------------------------- Invitation Test ------------------------------//
 
-describe('Invitation',() =>{
+describe('Invitation', () => {
     it('adminRegisterInviteTest', (done) => {
         let body = {
-            name:"jeffrey",
+            name: "jeffrey",
             email: "adminTest@qut.edu.au",
             role: "admin",
         }
@@ -1195,7 +1195,7 @@ describe('Invitation',() =>{
     });
     it('adminRegisterInviteTest', (done) => {
         let body = {
-            name:"jeffrey",
+            name: "jeffrey",
             email: "adminTest@qut.edu.au",
             role: "admin",
         }
@@ -1213,7 +1213,7 @@ describe('Invitation',() =>{
 
     it('mentorRegisterInviteTest', (done) => {
         let body = {
-            name:"Jeffrey",
+            name: "Jeffrey",
             email: "mentorTest@qut.edu.au",
             role: "mentor",
         }
@@ -1231,7 +1231,7 @@ describe('Invitation',() =>{
 
     it('enterpRegisterInviteTest', (done) => {
         let body = {
-            name:"Jeffrey",
+            name: "Jeffrey",
             email: "enterTest@qut.edu.au",
             role: "enterpreneur",
         }
@@ -1245,7 +1245,7 @@ describe('Invitation',() =>{
                 console.log(res.body)
                 done();
             });
-    });    
+    });
 
 });
 

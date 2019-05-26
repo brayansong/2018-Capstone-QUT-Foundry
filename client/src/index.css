@@ -220,3 +220,6 @@ a:-webkit-any-link {
 .mt-5 {
   margin-top: 1.5em
 }
+#root >div {
+  height: 100%;
+}

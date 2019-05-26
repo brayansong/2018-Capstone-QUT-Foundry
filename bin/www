@@ -13,5 +13,5 @@ app.set('port', port);
 
 const server = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
-// server.listen(port);
+server.listen(3000);
 httpsServer.listen(port);
